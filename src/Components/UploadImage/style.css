@@ -1,0 +1,5 @@
+.upload-avatar {
+    width: 100px; /* Điều chỉnh kích thước avatar */
+    height: 100px;
+    border-radius: 50%; /* Bo tròn avatar */
+  }
