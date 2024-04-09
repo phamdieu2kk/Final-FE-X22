@@ -1,54 +1,9 @@
 /* eslint-disable */
-import { Button } from "antd";
+import { Button , Flex} from "antd";
 import { useEffect, useState } from "react";
 import "./style.css";
 
-const fake = {
-    "_id": "660b1d6cdde56f5c9820422a",
-    "type": "arrange",
-    "question": "Sap xep cac tu duoi day thanh cau hoan chinh",
-    "answerList": [
-      {
-        "value": "A",
-        "index": 0,
-        "_id": "660b25b9dde56f5c98205d4f"
-      },
-      {
-        "value": "B",
-        "index": 1,
-        "_id": "660b25b9dde56f5c98205d50"
-      },
-      {
-        "value": "C",
-        "index": 2,
-        "_id": "660b25b9dde56f5c98205d51"
-      },
-      {
-        "value": "D",
-        "index": 3,
-        "_id": "660b25b9dde56f5c98205d52"
-      },
-      {
-        "value": "E",
-        "index": 4,
-        "_id": "660b25b9dde56f5c98205d53"
-      },
-      {
-        "value": "F",
-        "index": 5,
-        "_id": "660b25b9dde56f5c98205d54"
-      },
-      {
-        "value": "G",
-        "index": 6,
-        "_id": "660b25b9dde56f5c98205d55"
-      }
-    ],
-    "challengeId": {
-      "$oid": "660b1a35bead8eea4f5d0ec2"
-    },
-    "__v": 0
-  }
+
 
   function shuffle(array) {
     let currentIndex = array.length;
@@ -121,12 +76,14 @@ const ArrangeQuestions = ({ currentQuestion, onChangeAnswer }) => {
   }
 
   return (
+    
      <div className="option-arrange">
+            <h5>Sắp xếp các thứ tự trong câu sau thành câu hoàn chỉnh</h5>
             
             <div className="answer-list answer-list-1">
                 {answerList1.map(answer => <div key={answer._id} className="answer-item" onClick={() => swapElement(answer._id, 'answer-list-1')}>{answer.value}</div>)}
             </div>
-
+            <h5>Câu trả lời:</h5>
             <div className="answer-list answer-list-2">
                 {answerList2.map(answer => <div key={answer._id} className="answer-item" onClick={() => swapElement(answer._id, 'answer-list-2')}>{answer.value}</div>)}
             </div>

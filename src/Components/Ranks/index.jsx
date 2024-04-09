@@ -1,31 +1,9 @@
 import "./style.css";
-import { useEffect, useState } from "react";
-import axios from "axios";
-import { Breadcrumb , Row, Col } from "antd";
-import { Link } from "react-router-dom";
+
+import { Breadcrumb} from "antd";
 
 const Ranks = () => {
-  const [ranks, setRanks] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get("");
-        // Sắp xếp danh sách người chơi theo số điểm từ cao đến thấp
-        const sortedRanks = response.data.sort((a, b) => b.score - a.score);
-        // Chọn ra 10 người chơi có số điểm cao nhất
-        const topTen = sortedRanks.slice(0, 10);
-        setRanks(topTen);
-        setIsLoading(false);
-      } catch (error) {
-        console.error("Error fetching ranks:", error);
-        setIsLoading(false);
-      }
-    };
-
-    fetchData();
-  }, []);
 
   return (
     <div>
@@ -42,7 +20,7 @@ const Ranks = () => {
       <h2 className="title-instruction">
         BẢNG XẾP HẠNG
       </h2>
-      <div className="pt-2 text-right">
+      {/* <div className="pt-2 text-right">
         <select className="rounded border-2 border-slate-300 px-4 py-1 outline-none">
           <option value="" selected="">
             Chọn top
@@ -53,7 +31,7 @@ const Ranks = () => {
           <option value={4}>4</option>
           <option value={5}>5</option>
         </select>
-      </div>
+      </div> */}
       </div>
   );
 };

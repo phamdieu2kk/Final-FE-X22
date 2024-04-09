@@ -1,13 +1,14 @@
 /* eslint-disable */
+
 import { useState } from 'react';
 import { Checkbox, Row, Col } from 'antd';
 import './style.css';
 
 const MultipleChoice = ({ currentQuestion, onChangeAnswer }) => {
-    const [selectedAnswers, setSelectedAnswers] = useState([]); // Sử dụng state để lưu trữ các giá trị đáp án được chọn
+    const [selectedAnswers, setSelectedAnswers] = useState([]);
 
     const handleChangeAnswer = (values) => {
-        setSelectedAnswers(values); // Cập nhật state khi có sự thay đổi
+        setSelectedAnswers(values);
         onChangeAnswer({
             questionId: currentQuestion._id,
             answers: values,
@@ -16,14 +17,16 @@ const MultipleChoice = ({ currentQuestion, onChangeAnswer }) => {
     };
 
     const handleCheckboxChange = (answerId) => {
-        const newSelectedAnswers = selectedAnswers.includes(answerId)
-            ? selectedAnswers.filter((id) => id !== answerId)
-            : [...selectedAnswers, answerId];
-        setSelectedAnswers(newSelectedAnswers);
-        handleChangeAnswer(newSelectedAnswers);
+        setSelectedAnswers(prevState => {
+            if (prevState.includes(answerId)) {
+                return prevState.filter(id => id !== answerId);
+            } else {
+                return [...prevState, answerId];
+            }
+        });
     };
 
-    const colCount = Math.ceil(currentQuestion.answerList.length / 3);
+    const colCount = Math.ceil(currentQuestion.answerList.length / 2);
 
     return (
         <div className="option-multiple-choice">
@@ -33,10 +36,9 @@ const MultipleChoice = ({ currentQuestion, onChangeAnswer }) => {
                 onChange={handleChangeAnswer}
             >
                 <Row gutter={[16, 16]}>
-                    {currentQuestion.answerList.map((answer, index) => (
-                        <Col key={index} span={24 / colCount}>
+                    {currentQuestion.answerList.map((answer) => (
+                        <Col key={answer._id} span={24 / colCount}>
                             <div
-                                key={answer._id}
                                 className={`answer-option ${selectedAnswers.includes(answer._id) ? 'selected' : ''}`}
                                 onClick={() => handleCheckboxChange(answer._id)}
                             >

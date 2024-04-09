@@ -13,7 +13,7 @@ const Questions = () => {
     const [questions, setQuestions] = useState([]);
     const [currentIndex, setCurrentIndex] = useState(0);
     const [answerList, setAnswerList] = useState([]);
-    const [timeLeft, setTimeLeft] = useState(180); // Thời gian còn lại ban đầu: 3 phút * 60 giây/phút
+    const [timeLeft, setTimeLeft] = useState(120); // Thời gian còn lại ban đầu: 3 phút * 60 giây/phút
     const [timeUp, setTimeUp] = useState(false); 
     const [showResult, setShowResult] = useState(false); // Biến để kiểm soát hiển thị kết quả
     const [score, setScore] = useState(0); // State để lưu điểm số
@@ -24,7 +24,7 @@ const Questions = () => {
 
     useEffect(() => {
         (async () => {
-             // try {
+            //  try {
             //     const res = await api.getQuestion({
             //         queries: queries,
             //     });
@@ -185,7 +185,7 @@ const Questions = () => {
             )}
             <Modal
                 title="Xác nhận nộp bài"
-                visible={confirmSubmit}
+                open={confirmSubmit}
                 onOk={handleConfirmSubmit}
                 onCancel={() => setConfirmSubmit(false)}
             >

@@ -78,7 +78,7 @@
   },
   {
     "_id": "660b202adde56f5c9820438e",
-    "type": "single-choice",
+    "type": "multiple-choice",
     "question": "Loài động vật nào là loài động vật nhanh nhất trên trái đất?",
     "answerList": [
       {

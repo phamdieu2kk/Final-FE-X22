@@ -90,14 +90,8 @@ const Contact = () => {
             defaultValue={""}
           />
         </div>
-        
-        
-       
-   
-        <Button type="primary" htmlType="submit" className="auth-button"> Gửi tin nhắn</Button>
-          
-        
-      </form>
+         <Button type="primary" htmlType="submit" className="auth-button"> Gửi tin nhắn</Button>
+         </form>
     </div>
   </div>
 </div>

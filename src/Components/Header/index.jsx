@@ -1,4 +1,4 @@
-import { Col, Flex, Menu, Row, Dropdown } from "antd";
+import { Col, Flex, Menu, Row, Dropdown ,} from "antd";
 import { useContext, useEffect, useState } from "react";
 import AuthContext from "../../context/AuthContext";
 import { NavLink, useNavigate } from "react-router-dom";
@@ -134,7 +134,7 @@ export default function Header() {
             <Dropdown
               overlay={loggedMenu}
               trigger={["hover"]}
-              visible={menuVisible}
+              open={menuVisible}
               onVisibleChange={setMenuVisible}
              
             >

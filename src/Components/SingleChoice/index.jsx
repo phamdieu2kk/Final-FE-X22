@@ -1,14 +1,18 @@
 /* eslint-disable */
+
 import { Radio } from "antd";
 import "./style.css";
+
 const SingleChoice = ({ currentQuestion, onChangeAnswer }) => {
     const handleChangeAnswer = (e) => {
+        const selectedAnswerId = e.target.value;
         onChangeAnswer({
             questionId: currentQuestion._id,
-            answers: e.target.value,
+            answers: selectedAnswerId,
             type: currentQuestion.type,
         });
     };
+
     return (
         <div className="option-single-choice">
             <Radio.Group onChange={handleChangeAnswer}>
@@ -21,17 +25,15 @@ const SingleChoice = ({ currentQuestion, onChangeAnswer }) => {
                         gap: "2rem",
                     }}
                 >
-                    {currentQuestion.answerList.map((answer) => {
-                        return (
-                            <Radio.Button
-                                style={{ width: "calc(50% - 1rem)" }}
-                                key={answer._id}
-                                value={answer._id}
-                            >
-                                {answer.value}
-                            </Radio.Button>
-                        );
-                    })}
+                    {currentQuestion.answerList.map((answer) => (
+                        <Radio.Button
+                            key={answer._id}
+                            value={answer._id}
+                            style={{ width: "calc(50% - 1rem)"}}
+                        >
+                            {answer.value}
+                        </Radio.Button>
+                    ))}
                 </div>
             </Radio.Group>
         </div>

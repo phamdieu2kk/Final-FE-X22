@@ -26,6 +26,7 @@ const Topic = () => {
 
   const handlePageChange = (page) => {
     setCurrentPage(page);
+    setIsLoading(true); // Reset isLoading state to true when changing pages
   };
 
   return (
@@ -50,7 +51,7 @@ const Topic = () => {
               <Col key={topic._id}xs={24} sm={12} md={8} lg={6} xl={6}>
                 <Card
                   title={topic.title}
-                  style={{ width:"100%" }}
+                  style={{ width:"90%" }}
                 >
                   <img
                     alt="topic-img"

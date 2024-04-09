@@ -1,25 +1,27 @@
-.answer-container {
+.option-multiple-choice .ant-row {
     display: flex;
-    justify-content: center;
+    flex-wrap: wrap;
+    justify-content: center; /* Căn giữa theo chiều ngang */
+    align-items: center; /* Căn giữa theo chiều dọc */
+    height: 100%;
 }
 
-.option-multiple-choice {
+.option-multiple-choice .ant-col {
     display: flex;
-    justify-content: center; /* căn giữa theo chiều ngang */
-    align-items: center; /* căn giữa theo chiều dọc */
-    flex-wrap: wrap; /* cho phép các ô đáp án xuống dòng khi không đủ chỗ */
+    justify-content: center; /* Căn giữa theo chiều ngang */
+    margin: 10px auto; /* Thêm khoảng cách giữa các cột */
 }
 
 .answer-option {
     border: 1px solid #333;
-    width: 70%; 
+    width: 80%; 
     padding: 10px; 
-    flex: 1; /* tự động mở rộng để đối xứng với khung câu hỏi */
-    margin: 10px; 
+    box-sizing: border-box;
+    
 }
 
 .answer-option.selected {
-    background-color: #FAEBD7; 
+    background-color: #f2bc3e; 
 }
 
-
+  
