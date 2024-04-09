@@ -26,9 +26,9 @@ export default function Login() {
       setAccessToken(`Bearer ${response.data.token}`);
 
       const profileResponse = await api.auth.invoke({});
-      // console.log(profileResponse);
+      console.log(profileResponse);
 
-      setCurrentUser(profileResponse.data)
+      // setCurrentUser(profileResponse.data)
 
       notify.success({
         message: "Thành công",

@@ -9,12 +9,12 @@
 }
 /* style.css */
 .question-header {
-  margin-bottom: 30px; /* Khoảng cách giữa câu hỏi và câu trả lời */
+  margin-bottom: 20px; /* Khoảng cách giữa câu hỏi và câu trả lời */
   text-align: center; /* Căn giữa nội dung trong khung chứa câu hỏi */
   justify-content: center;
   margin: 0 auto;
   padding: 20px;
-  border: 1px solid #ccc;
+  border: 1px solid #040404;
   align-items: center;
 }
 
