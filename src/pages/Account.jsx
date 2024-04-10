@@ -1,33 +1,23 @@
-import { Breadcrumb } from "antd";
-import { Link} from "react-router-dom";
-import UpdateAccountForm from "./UpdateAccountForm";
 
+import UpdateAccountForm from "./UpdateAccountForm";
+import { Typography} from "antd";
 const Account = () => {
   return (
-   
-   <>
-    <div className="content">
-      <div className="title-home">
-          
-         <Breadcrumb items={[{ title: <Link to="/">Trang chủ</Link> },{ title: 'Tài Khoản' }]} /> 
-        </div>
-
-        <div className="container mt-5">
+    <div className="auth-page">
+       <div  className="container mt-5">
     <div className="row">
-      <div className="col-md-6 offset-md-3">
-        <div className="card">
-          <div className="card-body">
-            <h2  style={{ textAlign: "center", fontFamily: "Playball" }} className="card-title text-center mb-4"> Cập nhật thông tin cá nhân</h2>
+      <div className="col-md-6 offset-md-3" style={{ width:"100%"}}>
+        
+      <Typography.Title 
+        style={{ textAlign: "center", fontFamily: "Playball" }}>
+          Cập nhật thông tin cá nhân{" "}
+        </Typography.Title>
             <UpdateAccountForm/>
              </div>
              </div>
              </div>
              </div>
-             </div>
-             </div>
-     
- 
-      </>
+              
 
   )
 }

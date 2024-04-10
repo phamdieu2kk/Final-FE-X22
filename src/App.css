@@ -1,39 +1,51 @@
+
 * {
+  box-sizing: border-box;
   padding: 0;
   margin: 0;
-  box-sizing: border-box;
-  
 }
-
-body {
+#root {
+  width: 100%;
+  height: 100%;
+  font-family: merge;
+  background-color: #fdf9dd;
   color: #000000;
-  background: #ffffff url("https://trangnguyentiengviet.vn/assets/images/bg-pattern2.png")  ;
+  line-height: 1.6;
   font-size: 14px;
   font-family: 'Quicksand', sans-serif;
   border-radius: 10px;
-  
+}
+
+.home-row {
+  display: flex;
+  justify-content: space-between;
 }
 
 /* CSS register , login */
-.auth-form {
-  width: 40%;
-  min-width: 400px;
-  background: #f4eded url("https://trangnguyen.edu.vn/assets/images/bg-login-box.svg") no-repeat top left ;
-  border-radius: 10px;
-  box-shadow: 10px 10px 5px lightblue ;
-  border: 5px solid #f7d1d1;
-  padding: 30px ;
-  margin: 40px auto;
-  
+
+.auth-page {
+  background-image: url('https://trangnguyen.edu.vn/assets/images/bg-header.png');
+  background-size: cover; 
+  background-position: center; 
+  padding: 20px; 
+  margin: auto;
 }
 
-
+.auth-form {
+  width: 40%;
+  min-width: 600px;
+  background: #f4eded url("https://trangnguyen.edu.vn/assets/images/bg-login-box.svg") no-repeat top left ;
+  margin: 20px auto;
+  background-color: rgba(255, 255, 255, 0.8); 
+  padding: 40px; 
+  border-radius: 10px;
+  box-shadow: 10px 10px 5px lightblue ;
+  border: 1px solid #55f112;
+}
 
 .auth-button{
-	width:100%;
 	margin-top: 10px;
   margin-bottom: 10px;
-
 }
 
 
@@ -170,14 +182,16 @@ body {
 
 .updateAccountFormWrapper {
   display: flex;
-  justify-content: center;
-  align-items: center;
- 
- 
 }
 
 .updateAccountForm {
   width:100%; /* Điều chỉnh kích thước của form */
-
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 40px; 
+  background: #f4eded url("https://trangnguyen.edu.vn/assets/images/bg-login-box.svg") no-repeat top left ;
+  background-color: rgba(255, 255, 255, 0.8); 
+  box-shadow: 10px 10px 5px lightblue ;
+  border: 1px solid #55f112;
 }
 

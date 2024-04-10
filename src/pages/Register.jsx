@@ -1,5 +1,5 @@
 import { Link, useNavigate } from "react-router-dom";
-import { Row, Col, Button, Checkbox, Form, Input, Typography, notification } from "antd";
+import {Row, Col, Button, Checkbox, Form, Input, Typography, notification } from "antd";
 import api from "../api";
 
 export default function Register() {
@@ -34,10 +34,9 @@ export default function Register() {
     }
 
     return (
-        <div className="register-page">
+        <div className="auth-page">
             {notifyContextHolder}
-
-            <Row justify="center" align="middle" style={{ minHeight: '100vh' }}>
+           <Row justify="center" align="middle" style={{ minHeight: '100vh' }}>
                 <Col xs={24} sm={20} md={16} lg={12} xl={8}>
                     <Form
                         form={registerForm}
@@ -109,5 +108,6 @@ export default function Register() {
                 </Col>
             </Row>
         </div>
+      
     );
 }

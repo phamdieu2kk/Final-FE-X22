@@ -1,4 +1,3 @@
-
 import "./style.css";
 
 const FooterList = () => {
@@ -9,24 +8,21 @@ const FooterList = () => {
           <div className="container">
             <div className="row">
               <div className="col-12 col-md-12 col-lg-4 ft-info col-footer">
-              <h2 className="title-menu title-menu2">Web game</h2>
+                <h2 className="title-menu title-menu2">Web game</h2>
                 <div className="content-ft">
-                Hãy đến với WEB GAME và hãy trãi nghiệm  những câu đố tuyệt vời của
+                  Hãy đến với WEB GAME và hãy trãi nghiệm  những câu đố tuyệt vời của
                   chúng tôi làm cho bạn thêm nhiều kiến thức mới
                 </div>
-               
-               
               </div>
 
               <div className="col-12 col-md-6 col-lg-2 link-list col-footer">
                 <h4 className="title-menu title-menu2">Chính sách</h4>
                 <ul className="list-menu">
-                <li>
+                  <li>
                     <a href="#" title="Chính sách thành viên">
                       Chính sách thành viên
                     </a>
                   </li>
-                  
                   <li>
                     <a href="#" title="Bảo mật Thông tin">
                       Bảo mật Thông tin
@@ -34,6 +30,7 @@ const FooterList = () => {
                   </li>
                 </ul>
               </div>
+
               <div className="col-12 col-md-6 col-lg-3 link-list col-footer">
                 <h4 className="title-menu title-menu2">Thông tin chung</h4>
                 <div className="group-adress">
@@ -53,12 +50,9 @@ const FooterList = () => {
                   </ul>
                 </div>
               </div>
+
               <div className="col-12 col-md-12 col-lg-3">
                 <h4 className="title-menu title-menu2">Hỗ trợ</h4>
-                <div className="group-adress">
-                  
-                </div>
-               
                 <div className="group-adress">
                   <ul>
                     <li>
@@ -67,6 +61,7 @@ const FooterList = () => {
                     </li>
                   </ul>
                 </div>
+                
                 <h4 className="title-menu title-menu2">GÓP Ý & KHIẾU NẠI</h4>
                 <div className="group-adress">
                   <ul>

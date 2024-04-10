@@ -26,9 +26,9 @@ export default function Login() {
       setAccessToken(`Bearer ${response.data.token}`);
 
       const profileResponse = await api.auth.invoke({});
-      console.log(profileResponse);
+      // console.log(profileResponse);
 
-      // setCurrentUser(profileResponse.data)
+      setCurrentUser(profileResponse.data)
 
       notify.success({
         message: "Thành công",
@@ -43,12 +43,10 @@ export default function Login() {
       });
     }
   };
-  return (
-    <div className="register-page">
+  return ( 
+   
+    <div className="auth-page">
       {notifyContextHolder}
-      {/* <Slider /> */}
-      {/* <Breadcrumb items={[{ title: <Link to="/">Trang chủ</Link> }, { title: 'Đăng nhập' }]} separator=">" /> */}
-
       <Form
         form={loginForm}
         onFinish={handleLoginForm}
@@ -67,14 +65,14 @@ export default function Login() {
           rules={[
             {
               required: true,
-              message: "Tên đăng ký bắt buộc nhập",
+              message: "Tên đăng nhập bắt buộc nhập",
               whitespace: true,
             },
             {
               validator: (rule, value) =>
                 !value?.trim() || !value.includes(" ")
                   ? Promise.resolve()
-                  : Promise.reject("Tên đăng ký không được chứa dấu cách"),
+                  : Promise.reject("Tên đăng nhập không được chứa dấu cách"),
             },
           ]}
         >
@@ -111,5 +109,6 @@ export default function Login() {
         </Form.Item>
       </Form>
     </div>
+   
   );
 }
