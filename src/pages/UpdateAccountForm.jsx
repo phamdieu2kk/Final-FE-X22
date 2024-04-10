@@ -24,11 +24,7 @@ const UpdateAccountForm = () => {
   
       if (response.success) {
         setAccessToken(`Bearer ${response.data.token}`);
-        
-        
-        if (avatar) {
-          // Update avatar
-        }
+  
         
         setNotificationMessage({
           type: "success",
@@ -94,7 +90,8 @@ const UpdateAccountForm = () => {
         </Form.Item>
 
         <Form.Item>
-          <Button type="primary" htmlType="submit">
+          <Button type="primary" htmlType="submit" 
+          style={{ width:"100%", textAlign: "center"}}>
             Cập nhật
           </Button>
         </Form.Item>

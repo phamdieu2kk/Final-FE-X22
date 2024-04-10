@@ -48,28 +48,31 @@ const Challenges = () => {
           </Breadcrumb.Item>
           <Breadcrumb.Item>Thử thách</Breadcrumb.Item>
         </Breadcrumb>
-        <h2>CHỌN THỬ THÁCH</h2>
       </div>
       <Row gutter={[16, 16]}>
         {challenges.map((challenge) => (
           <Col key={challenge._id} xs={24} sm={12} md={8} lg={6} xl={6}>
             <Card
+              style={{ width: "90%" }}
               hoverable
               cover={
-                <img
-                  alt="challenge"
-                  src={challenge.img ?? "https://png.pngtree.com/thumb_back/fw800/background/20230903/pngtree-a-puzzle-board-with-flags-set-up-image_13191520.jpg"}
-                  style={{ width: "100%"}}
+                <div style={{ height: "200px", overflow: "hidden" }}>
+                  <img
+                    alt="challenge"
+                    src={
+                      challenge.img ??
+                      "https://png.pngtree.com/thumb_back/fw800/background/20230903/pngtree-a-puzzle-board-with-flags-set-up-image_13191520.jpg"
+                    }
+                    style={{ width: "100%", height: "100%", objectFit: "cover" }}
                   />
+                </div>
               }
             >
               <Card.Meta
                 title={challenge.challengeName}
                 description={`Level: ${challenge.level} - Point: ${challenge.point}`}
               />
-              <Button 
-              style={{  marginTop: "20px" }}
-              onClick={() => handleShowDetail(challenge)}>
+              <Button style={{ marginTop: "20px" }} onClick={() => handleShowDetail(challenge)}>
                 Thử thách
               </Button>
             </Card>
@@ -77,12 +80,7 @@ const Challenges = () => {
         ))}
       </Row>
       <div style={{ textAlign: "center", marginTop: "20px" }}>
-        <Pagination
-          total={challenges.length}
-          pageSize={pageSize}
-          current={currentPage}
-          onChange={handlePageChange}
-        />
+        <Pagination total={challenges.length} pageSize={pageSize} current={currentPage} onChange={handlePageChange} />
       </div>
       <Modal
         title={selectedChallenge?.challengeName}
@@ -90,11 +88,11 @@ const Challenges = () => {
         onCancel={handleCloseDetail}
         footer={null}
       >
-        <p>Level: {selectedChallenge?.level}</p>
-        <p>Point: {selectedChallenge?.point}</p>
+        <p>{selectedChallenge?.level}</p>
+        <p>{selectedChallenge?.point}</p>
         <Button>
-          <Link to={`/questions`} style={{ color: 'inherit', textDecoration: 'none' }}>
-             Chơi Ngay
+          <Link to={`/questions`} style={{ color: "inherit", textDecoration: "none" }}>
+            Chơi Ngay
           </Link>
         </Button>
       </Modal>

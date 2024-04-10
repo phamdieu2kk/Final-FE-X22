@@ -1,40 +1,9 @@
-.d-none {
-    display: none;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*CSS responsive*/
-@media (max-width: 700px) {
-   
-.d-none {
-    display: none;
-}
-
+.title-ranks{
+    width: 50%;
+    min-width: 500px;
+    margin: 60px auto;
+    background-color: rgba(255, 255, 255, 0.8); 
+    padding: 40px; 
+    box-shadow: 10px 10px 5px rgb(200, 224, 233) ;
+   height: auto;
 }

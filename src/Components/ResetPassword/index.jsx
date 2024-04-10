@@ -41,11 +41,9 @@ const ResetPassword = () => {
     };
 
     return (
-        <>
-            <div className="register-page">
-                <Form className="auth-form">
-                    <Typography.Title style={{ textAlign: "center", fontFamily: "Playball" }}>Đặt lại mật khẩu </Typography.Title>
-                            
+        <div className="auth-page">
+            <Form className="auth-form">
+                <Typography.Title style={{ textAlign: "center", fontFamily: "Playball" }}>Đặt lại mật khẩu </Typography.Title>
                     <Form.Item
                         label="Mật khẩu"
                         name="password"
@@ -69,11 +67,11 @@ const ResetPassword = () => {
                         <Input.Password maxLength={100} />
                     </Form.Item>
 
-                    <Button type="primary" htmlType="submit" className="auth-button" onClick={handleResetPasswordForm}>Đặt lại mật khẩu</Button>
+                    <Button type="primary" htmlType="submit" className="auth-button" style={{ width: '100%' }} onClick={handleResetPasswordForm}>Đặt lại mật khẩu</Button>
                 </Form>
             </div>
-          
-        </>
+            
+      
     );
 };
 

@@ -1,5 +1,5 @@
 
-import FooterList from "../FooterList";
+
 import {  useNavigate } from "react-router-dom";
 import {  Button, Form, Input, Typography, notification } from "antd";
 import { useState } from "react";
@@ -24,8 +24,9 @@ const Forgotpassword = () => {
     };
 
     return (
-        <div className="register-page">
-            <Form className="auth-form">
+       
+    <div className="auth-page">
+         <Form className="auth-form">
             <Typography.Title style={{ textAlign: "center", fontFamily: "Playball" }}>Quên mật khẩu </Typography.Title>
 
             <Form.Item
@@ -39,10 +40,10 @@ const Forgotpassword = () => {
             >
                 <Input maxLength={256} />
             </Form.Item>
-            <Button type="primary" htmlType="submit" className="auth-button"  onClick={handleForgotpasswordForm}>Lấy lại mật khẩu</Button>
+            <Button type="primary" htmlType="submit" className="auth-button" style={{ width: '100%' }} onClick={handleForgotpasswordForm}>Lấy lại mật khẩu</Button>
             </Form>
-            <FooterList />
-        </div>
+            </div>
+       
     );
 };
 
