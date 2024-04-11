@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { Breadcrumb, Card, Pagination, Row, Col } from "antd";
 import { Link } from "react-router-dom";
 import api from "../api";
-
 const Topic = () => {
   const [topics, setTopics] = useState({ list: [], total: 0 });
   const [isLoading, setIsLoading] = useState(true);
@@ -33,12 +32,12 @@ const Topic = () => {
     <>
       <div className="content">
         <div className="title-home">
-          <Breadcrumb
+          {/* <Breadcrumb
             items={[
               { title: <Link to="/">Trang chủ</Link> },
               { title: "Tất cả chủ đề" },
             ]}
-          />
+          /> */}
         </div>
       </div>
 

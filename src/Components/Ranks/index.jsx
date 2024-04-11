@@ -27,7 +27,7 @@ const Ranks = () => {
   }, []);
 
   return (
-    <div  className="title-ranks">
+    <div  className="container-page">
       <h2
        style={{
         textAlign: "center",

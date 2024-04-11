@@ -1,18 +1,25 @@
-import SliderMenu from "../Components/SliderMenu";
+import TopicSlider from "../Components/TopicSlider";
 import Ranks from "../Components/Ranks";
 import { Row, Col } from "antd";
-
+import Topic from "./Topic";
 const Home = () => {
   return (
     <div className="container">
       <Row justify="center">
         <Col md={12}>
-          <Ranks/> 
+        <TopicSlider/>
         </Col>
         <Col md={12}>
-          <SliderMenu/>
-        </Col>
+          <Ranks/> 
+           </Col>
+          
       </Row>
+ {/* them 1 slider thu thach  */}
+ <h1  style={{
+        textAlign: "center",
+      }} className="home__title">Chủ đề nổi bật</h1>
+      {/* <Topic/> */}
+      
       
       <section className="section-instruction">
         <div className="container">
@@ -23,7 +30,6 @@ const Home = () => {
         </div>
       </section>
 
-      
     </div>
   );
 };
