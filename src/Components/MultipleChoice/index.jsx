@@ -1,8 +1,8 @@
 /* eslint-disable */
 
-import { useState } from 'react';
-import { Checkbox, Row, Col } from 'antd';
-import './style.css';
+import { useState } from "react";
+import { Checkbox, Row, Col } from "antd";
+import "./style.css";
 
 const MultipleChoice = ({ currentQuestion, onChangeAnswer }) => {
     const [selectedAnswers, setSelectedAnswers] = useState([]);
@@ -17,9 +17,9 @@ const MultipleChoice = ({ currentQuestion, onChangeAnswer }) => {
     };
 
     const handleCheckboxChange = (answerId) => {
-        setSelectedAnswers(prevState => {
+        setSelectedAnswers((prevState) => {
             if (prevState.includes(answerId)) {
-                return prevState.filter(id => id !== answerId);
+                return prevState.filter((id) => id !== answerId);
             } else {
                 return [...prevState, answerId];
             }
@@ -31,7 +31,7 @@ const MultipleChoice = ({ currentQuestion, onChangeAnswer }) => {
     return (
         <div className="option-multiple-choice">
             <Checkbox.Group
-                style={{ width: '100%' }}
+                style={{ width: "100%" }}
                 value={selectedAnswers}
                 onChange={handleChangeAnswer}
             >
@@ -39,10 +39,17 @@ const MultipleChoice = ({ currentQuestion, onChangeAnswer }) => {
                     {currentQuestion.answerList.map((answer) => (
                         <Col key={answer._id} span={24 / colCount}>
                             <div
-                                className={`answer-option ${selectedAnswers.includes(answer._id) ? 'selected' : ''}`}
+                                className={`answer-option ${
+                                    selectedAnswers.includes(answer._id)
+                                        ? "selected"
+                                        : ""
+                                }`}
                                 onClick={() => handleCheckboxChange(answer._id)}
                             >
-                                <Checkbox value={answer._id} style={{ width: '100%' }}>
+                                <Checkbox
+                                    value={answer._id}
+                                    style={{ width: "100%" }}
+                                >
                                     {answer.value}
                                 </Checkbox>
                             </div>

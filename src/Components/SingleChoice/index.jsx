@@ -8,7 +8,7 @@ const SingleChoice = ({ currentQuestion, onChangeAnswer }) => {
         const selectedAnswerId = e.target.value;
         onChangeAnswer({
             questionId: currentQuestion._id,
-            answers: selectedAnswerId,
+            answers: [selectedAnswerId],
             type: currentQuestion.type,
         });
     };
@@ -29,7 +29,7 @@ const SingleChoice = ({ currentQuestion, onChangeAnswer }) => {
                         <Radio.Button
                             key={answer._id}
                             value={answer._id}
-                            style={{ width: "calc(50% - 1rem)"}}
+                            style={{ width: "calc(50% - 1rem)" }}
                         >
                             {answer.value}
                         </Radio.Button>

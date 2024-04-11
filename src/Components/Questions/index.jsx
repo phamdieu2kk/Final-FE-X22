@@ -1,12 +1,18 @@
 import { useEffect, useState } from "react";
 import SingleChoice from "../SingleChoice";
 import MultipleChoice from "../MultipleChoice";
-import { Button , Flex, Result, Modal } from "antd";
+import { Button, Flex, Result, Modal } from "antd";
 import "./style.css";
 import ArrangeQuestions from "../ArrangeQuestions";
+import api from "../../api";
 
-// import api from "../../api";
 // import { useLocation } from "react-router-dom";
+
+const QUESTION_TYPE = {
+    SINGLE_CHOICE: "single-choice",
+    MULTI_CHOICE: "multi-choice",
+    ARRANGE_CHOICE: "arrange",
+};
 
 const Questions = () => {
     // const location = useLocation();
@@ -15,29 +21,22 @@ const Questions = () => {
     const [currentIndex, setCurrentIndex] = useState(0);
     const [answerList, setAnswerList] = useState([]);
     const [timeLeft, setTimeLeft] = useState(120); // Thời gian còn lại ban đầu: 3 phút * 60 giây/phút
-    const [timeUp, setTimeUp] = useState(false); 
+    const [timeUp, setTimeUp] = useState(false);
     const [showResult, setShowResult] = useState(false); // Biến để kiểm soát hiển thị kết quả
     const [score, setScore] = useState(0); // State để lưu điểm số
     const [confirmSubmit, setConfirmSubmit] = useState(false); // State để kiểm soát xác nhận nộp bài
     const [isTimerRunning, setIsTimerRunning] = useState(true); // State để kiểm soát việc chạy thời gian
-
-   
+    const [isCorrectAnswerList, setIsCorrectAnswerList] = useState([]);
 
     useEffect(() => {
         (async () => {
-            //  try {
-            //     const res = await api.getQuestion({
-            //         queries: queries,
-            //     });
-            //     setQuestions(res.data); // Assuming res.data contains the questions
-            // } catch (error) {
-            //     console.error("Error fetching questions:", error);
-            // }
-          
-            const res = await fetch("/test.json");
-            const data = await res.json();
-            console.log(data);
-            setQuestions(data);
+            try {
+                const res = await api.getQuestion.invoke({});
+                setQuestions(res.data.questionList); // Assuming res.data contains the questions
+                console.log(res.data);
+            } catch (error) {
+                console.error("Error fetching questions:", error);
+            }
         })();
     }, []);
 
@@ -47,14 +46,14 @@ const Questions = () => {
                 setTimeLeft((prevTimeLeft) => {
                     if (prevTimeLeft === 0) {
                         clearInterval(timer);
-                        setTimeUp(true); 
+                        setTimeUp(true);
                         return prevTimeLeft;
                     } else {
                         return prevTimeLeft - 1;
                     }
                 });
             } else {
-                clearInterval(timer); 
+                clearInterval(timer);
             }
         }, 1000);
 
@@ -62,14 +61,10 @@ const Questions = () => {
     }, [isTimerRunning]);
 
     useEffect(() => {
-       
         if (timeUp && currentIndex !== questions.length - 1) {
             handleSubmitButtonClick(); // Tự động chuyển sang trang kết quả
         }
     }, [timeUp, currentIndex, questions]);
-    
-   
-
 
     const changeAnswer = (data) => {
         const newAnswerList = answerList.filter(
@@ -77,24 +72,24 @@ const Questions = () => {
         );
 
         switch (data.type) {
-            case "single-choice":
+            case QUESTION_TYPE.SINGLE_CHOICE:
                 newAnswerList.push(data);
                 break;
-            default:
-                break;
-            case "multiple-choice":
+            case QUESTION_TYPE.MULTI_CHOICE:
                 if (data.answers.length > 0) {
                     newAnswerList.push(data);
                 }
                 break;
-                case "arrange":
+
+            case QUESTION_TYPE.ARRANGE_CHOICE:
                 newAnswerList.push(data);
                 break;
-            }
+
+            default:
+                break;
+        }
 
         setAnswerList(newAnswerList);
-
-        console.log(newAnswerList);
     };
 
     useEffect(() => {
@@ -102,12 +97,40 @@ const Questions = () => {
     }, [answerList]);
 
     const calculateScore = () => {
-        
+        (async () => {
+            const responseList = await Promise.all(
+                answerList.map((answer) => {
+                    let data = answer.answers;
+
+                    if (answer.type === QUESTION_TYPE.ARRANGE_CHOICE) {
+                        data = answer.answers
+                            .map((answerItem) => answerItem.value)
+                            .join(" ");
+                    }
+
+                    return api.checkAnswer.invoke({
+                        params: { questionId: answer.questionId },
+                        data: {
+                            userAnswer: data,
+                        },
+                    });
+                })
+            );
+
+            const isCorrectAnswerListTemp = [];
+            responseList.map((response, index) => {
+                const isCorrectAnswer = {
+                    isCorrect: response.data.isCorrect,
+                    questionId: answerList[index].questionId,
+                };
+                isCorrectAnswerListTemp.push(isCorrectAnswer);
+            });
+            setIsCorrectAnswerList(isCorrectAnswerListTemp);
+        })();
     };
 
     const handleNextButtonClick = () => {
         const answerCurrent = answerList.find((answer) => {
-           
             return answer.questionId === questions[currentIndex]._id;
         });
 
@@ -118,12 +141,11 @@ const Questions = () => {
 
     const handleSubmitButtonClick = () => {
         setConfirmSubmit(true); // Hiển thị xác nhận trước khi nộp bài
-       
     };
 
     const handleConfirmSubmit = () => {
         console.log("nộp bài");
-        setScore(calculateScore()); // Tính điểm và lưu vào state
+        calculateScore();
         setShowResult(true); // Hiển thị kết quả khi bấm nút "Nộp bài"
         setConfirmSubmit(false); // Đặt lại state của xác nhận
         setIsTimerRunning(false); // Dừng thời gian
@@ -135,42 +157,67 @@ const Questions = () => {
             {questions.length > 0 && currentIndex < questions.length && (
                 <div className="question-card">
                     <Flex justify="space-between" align="center">
-                        <h6>Số câu hỏi: {currentIndex + 1}/{questions.length} - Loại: {questions[currentIndex].type}</h6>
+                        <h6>
+                            Số câu hỏi: {currentIndex + 1}/{questions.length} -
+                            Loại: {questions[currentIndex].type}
+                        </h6>
                         <h6>Score: </h6>
-                        <h6>Thời gian: {Math.floor(timeLeft / 60)}:{timeLeft % 60 < 10 ? `0${timeLeft % 60}` : timeLeft % 60}</h6>
+                        <h6>
+                            Thời gian: {Math.floor(timeLeft / 60)}:
+                            {timeLeft % 60 < 10
+                                ? `0${timeLeft % 60}`
+                                : timeLeft % 60}
+                        </h6>
                     </Flex>
                     <div className="question-header">
-                        <h2 className="question">{questions[currentIndex].question}</h2>
+                        <h2 className="question">
+                            {questions[currentIndex].question}
+                        </h2>
                         {/* Add question container here if needed */}
                     </div>
                     <div className="question-content">
-                        {questions[currentIndex].type === "single-choice" && (
+                        {questions[currentIndex].type ===
+                            QUESTION_TYPE.SINGLE_CHOICE && (
                             <SingleChoice
                                 currentQuestion={questions[currentIndex]}
                                 onChangeAnswer={changeAnswer}
                             />
                         )}
-                        {questions[currentIndex].type === "multiple-choice" && (
+                        {questions[currentIndex].type ===
+                            QUESTION_TYPE.MULTI_CHOICE && (
                             <MultipleChoice
                                 currentQuestion={questions[currentIndex]}
                                 onChangeAnswer={changeAnswer}
                             />
                         )}
-                        {questions[currentIndex].type === "arrange" && (
+                        {questions[currentIndex].type ===
+                            QUESTION_TYPE.ARRANGE_CHOICE && (
                             <ArrangeQuestions
-                            currentQuestion={questions[currentIndex]}
-                            onChangeAnswer={changeAnswer}
+                                currentQuestion={questions[currentIndex]}
+                                onChangeAnswer={changeAnswer}
                             />
-                            )}
-
+                        )}
                     </div>
                     <div className="button-container">
                         {currentIndex !== questions.length - 1 ? (
-                            <Button type="primary" onClick={handleNextButtonClick}>
+                            <Button
+                                type="primary"
+                                onClick={handleNextButtonClick}
+                                disabled={
+                                    !answerList.some(
+                                        (answer) =>
+                                            answer.questionId ===
+                                            questions[currentIndex]._id
+                                    )
+                                }
+                            >
                                 Câu tiếp theo
                             </Button>
                         ) : (
-                            <Button type="primary" onClick={handleSubmitButtonClick}>
+                            <Button
+                                type="primary"
+                                onClick={handleSubmitButtonClick}
+                            >
                                 Nộp bài
                             </Button>
                         )}
@@ -181,7 +228,11 @@ const Questions = () => {
                 <Result
                     status="success"
                     title="Hoàn thành thử thách!"
-                    subTitle={`Điểm số của bạn là: ${score}`}
+                    subTitle={`Bạn đã làm đúng: ${
+                        isCorrectAnswerList.filter(
+                            (isCorrectAnswer) => isCorrectAnswer.isCorrect
+                        ).length
+                    }/${isCorrectAnswerList.length} câu`}
                 />
             )}
             <Modal
@@ -196,4 +247,4 @@ const Questions = () => {
     );
 };
 
-export default Questions; 
+export default Questions;
