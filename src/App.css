@@ -11,9 +11,8 @@
   background-color: #fdf9dd;
   color: #000000;
   line-height: 1.6;
-  font-size: 14px;
   font-family: 'Quicksand', sans-serif;
-  border-radius: 10px;
+
 }
 
 .home-row {
@@ -75,6 +74,7 @@
   text-decoration: none;
   font-family: 'Playball';
   color: rgb(0, 0, 0);
+  font-size: 20px;
 }
 
 
