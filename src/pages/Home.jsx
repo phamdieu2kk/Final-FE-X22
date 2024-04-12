@@ -1,4 +1,4 @@
-import React from "react";
+
 import { Row, Col } from "antd";
 import ChallangeSlider from "../Components/ChallangeSlider";
 import Ranks from "../Components/Ranks";
@@ -7,26 +7,20 @@ import TopicSlider from "../Components/TopicSlider";
 const Home = () => {
   return (
     <div className="container">
+        <section className="section-homepage">
       <Row justify="center">
         <Col span={16}> 
-        <div style = {{height:"300px"
-        }}> 
+        <div> 
            <ChallangeSlider/>
            </div>
-       
-        </Col>
-        <Col span={8}> 
-       
-          <Ranks />
-        </Col>
-        </Row>
-        <div>
-        <TopicSlider />
-        </div>
-      
-
-      <section className="section-instruction">
-        <div className="">
+           </Col>
+           <Col span={8}> 
+           <Ranks />
+           </Col>
+           </Row>
+           <div>
+             <TopicSlider />
+             </div>
           <h3 className="title-instruction">
             <a
               className="title-name"
@@ -43,7 +37,7 @@ const Home = () => {
           các em học sinh, quý phụ huynh và các thầy cô, đồng thời hoàn thiện
           hệ sinh thái sản phẩm đa dạng để tiếp tục góp phần xây dựng nền giáo
           dục nước nhà.
-        </div>
+       
       </section>
     </div>
   );

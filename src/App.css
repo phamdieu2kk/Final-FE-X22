@@ -67,7 +67,6 @@
   text-align: center;
 }
 .topic-detail h3 a{
-  text-decoration: none;
   font-family: 'Playball';
   color: rgba(254, 0, 0, 0.996);
   font-size: 16px;
@@ -77,67 +76,16 @@
 
 
 /* CSS instruction*/
-.section-instruction {
-  border-radius: 5px;
-}
 
 .title-instruction {
-  font-size: 40px;
-  display: block;
+  font-size: 30px;
   text-align: center;
+  font-family: 'Playball';
 }
 
 .title-instruction a {
-  text-decoration: none;
-  font-family: 'Playball';
   color: #231f20;
 }
-
-/* CSS page home */
-.content {
-  margin: auto;
-}
-.section-banner-1 {
-  margin-top: 50px;
-}
-.thumb-image-banner {
-  position: relative;
-  overflow: hidden;
-  display: block;
-}
-.section-banner-2 {
-  margin-top: 50px;
-}
-.thumb-banner img {
-  width: 497px;
-  height: 354px;
-}
-.banner-left {
-  margin-left: -28px;
-}
-.thumb-content {
-  position: absolute;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  left: 50%;
-  transition: transform .25s ease, -webkit-transform .25s ease;
-  width: 100%;
-  text-align: center;
-}
-.thumb-content .title {
-  font-size: 40px;
-  color: #000000;
-  letter-spacing: .1em;
-  font-family: 'Playball';
-}
-.thumb-content p {
-  color: #000;
-  font-size: 14px;
-  font-weight: bold;
-}
-
-/* CSS Contact */
-
 
 --------------------------------------------------------------*/
 .contact-forms {

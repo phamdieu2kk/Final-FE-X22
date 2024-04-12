@@ -47,7 +47,7 @@ const Ranks = () => {
   ];
 
   return (
-    <div className="title-slider">
+    <div className="title-ranks">
       <h1
         style={{
           textAlign: "center",
