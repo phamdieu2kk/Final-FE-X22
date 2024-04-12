@@ -74,7 +74,7 @@ const TopicSlider = () => {
                             >
                            <Card
                   title={topic.title}
-                  style={{ width: "100%"}}
+                  style={{ width: "100%", height: "100%", position: "relative" }}
                   hoverable
                   cover={
                     <img
