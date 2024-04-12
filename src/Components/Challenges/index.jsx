@@ -47,7 +47,8 @@ const Challenges = () => {
     }
   };
   return (
-    <div className="container">
+    <>
+   
       <div className="title-home">
         <Breadcrumb>
           <Breadcrumb.Item>
@@ -56,11 +57,12 @@ const Challenges = () => {
           <Breadcrumb.Item>Thử thách</Breadcrumb.Item>
         </Breadcrumb>
       </div>
+      <div className="container">
       <Row gutter={[16, 16]}>
         {challenges.map((challenge) => (
           <Col key={challenge._id} xs={24} sm={12} md={8} lg={6} xl={6}>
             <Card
-              style={{ width: "90%" }}
+              style={{ width: "100%" }}
               hoverable
               cover={
                 <div style={{ height: "200px", overflow: "hidden" }}>
@@ -108,6 +110,7 @@ const Challenges = () => {
   </Button>
 </Modal>
     </div>
+    </>
   );
 };
 
