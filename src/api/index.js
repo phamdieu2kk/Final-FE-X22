@@ -7,7 +7,7 @@ const api = {
     topic: apiElement("GET", "/topic"),
     getChallengeList: apiElement("GET", "/challenge"),
     putUpdateAccountForm: apiElement("PUT", "/user/update"),
-    getQuestion: apiElement("GET", "/question"),
+    getQuestion: apiElement("GET", "question"),
     checkAnswer: apiElement("POST", `/answer/:questionId`),
 };
 

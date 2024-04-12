@@ -1,6 +1,27 @@
-.container-page{
-     margin: 40px auto;
-    padding: 40px; 
-    box-shadow: 10px 10px 5px rgb(200, 224, 233) ;
-   
+/* style.css */
+.title-slider {
+  padding: 20px;
+}
+
+.home__title {
+  font-size: 24px;
+  font-family: "Playball", cursive;
+  margin-bottom: 20px;
+}
+
+.rank__list {
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.ant-table-wrapper {
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 15px 15px 0px rgba(6, 0, 0, 0.1);
+}
+
+
+.ant-table-tbody > tr > td,
+.ant-table-thead > tr > th {
+  background-color: #fdf9dd;
 }

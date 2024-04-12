@@ -8,17 +8,13 @@
   width: 100%;
   height: 100%;
   font-family: merge;
-  background-color: #fdf9dd;
   color: #000000;
   line-height: 1.6;
   font-family: 'Quicksand', sans-serif;
-
+  background-image: url('https://trangnguyentiengviet.vn/assets/images/bg-pattern2.png');
 }
 
-.home-row {
-  display: flex;
-  justify-content: space-between;
-}
+
 
 /* CSS register , login */
 
@@ -70,12 +66,14 @@
 .topic-detail h3 {
   text-align: center;
 }
-.topic-detail h3 a {
+.topic-detail h3 a{
   text-decoration: none;
   font-family: 'Playball';
-  color: rgb(0, 0, 0);
-  font-size: 20px;
+  color: rgba(254, 0, 0, 0.996);
+  font-size: 16px;
 }
+
+
 
 
 /* CSS instruction*/

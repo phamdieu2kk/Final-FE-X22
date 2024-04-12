@@ -1,11 +1,19 @@
 /* style.css */
+
+.question-card {
+  width: 90%; /* Định dạng chiều rộng của khung chứa nội dung */
+  padding: 20px;
+  border: 1px solid #080000;
+  border-radius: 8px;
+ 
+}
 .questions-container {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 80vh;
   width: auto;
-  
+ 
 }
 /* style.css */
 .question-header {
@@ -16,16 +24,13 @@
   padding: 20px;
   border: 1px solid #040404;
   align-items: center;
-}
-
-
-
-.question-card {
-  width: 60%; /* Định dạng chiều rộng của khung chứa nội dung */
-  padding: 20px;
-  border: 1px solid #ccc;
   border-radius: 8px;
+ 
 }
+
+
+
+
 
 
 .question-content {

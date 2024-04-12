@@ -15,9 +15,10 @@ const Challenges = () => {
     const fetchChallenges = async () => {
       try {
         const response = await api.getChallengeList.invoke({
-          queries: queries,
-          page: currentPage,
-          pageSize: pageSize
+          queries: {
+            page: currentPage,
+            pageSize,
+        },
         });
         setChallenges(response.data.challengeList);
       } catch (error) {
@@ -38,7 +39,13 @@ const Challenges = () => {
   const handlePageChange = (page) => {
     setCurrentPage(page);
   };
-
+  const convertToVietnamese = (value, type) => {
+    if (type === 'level') {
+      return value === 'easy' ? 'Dễ' : value;
+    } else if (type === 'point') {
+      return value === 'point' ? 'Điểm' : value;
+    }
+  };
   return (
     <div>
       <div className="title-home">
@@ -60,7 +67,7 @@ const Challenges = () => {
                   <img
                     alt="challenge"
                     src={
-                      challenge.img ??
+                      challenge.imageUrl ??
                       "https://png.pngtree.com/thumb_back/fw800/background/20230903/pngtree-a-puzzle-board-with-flags-set-up-image_13191520.jpg"
                     }
                     style={{ width: "100%", height: "100%", objectFit: "cover" }}
@@ -70,7 +77,7 @@ const Challenges = () => {
             >
               <Card.Meta
                 title={challenge.challengeName}
-                description={`Level: ${challenge.level} - Point: ${challenge.point}`}
+                description={`Level: ${convertToVietnamese(challenge.level, 'level')} - Point: ${convertToVietnamese(challenge.point, 'point')}`}
               />
               <Button style={{ marginTop: "20px" }} onClick={() => handleShowDetail(challenge)}>
                 Thử thách
@@ -80,22 +87,26 @@ const Challenges = () => {
         ))}
       </Row>
       <div style={{ textAlign: "center", marginTop: "20px" }}>
-        <Pagination total={challenges.length} pageSize={pageSize} current={currentPage} onChange={handlePageChange} />
+        <Pagination 
+        total={challenges.total} 
+        pageSize={pageSize} 
+        current={currentPage}
+         onChange={handlePageChange} />
       </div>
       <Modal
-        title={selectedChallenge?.challengeName}
-        visible={!!selectedChallenge}
-        onCancel={handleCloseDetail}
-        footer={null}
-      >
-        <p>{selectedChallenge?.level}</p>
-        <p>{selectedChallenge?.point}</p>
-        <Button>
-          <Link to={`/questions`} style={{ color: "inherit", textDecoration: "none" }}>
-            Chơi Ngay
-          </Link>
-        </Button>
-      </Modal>
+  title={selectedChallenge?.challengeName}
+  visible={!!selectedChallenge}
+  onCancel={handleCloseDetail}
+  footer={null}
+>
+  <p>{convertToVietnamese(selectedChallenge?.level, 'level')}</p>
+  <p>{convertToVietnamese(selectedChallenge?.point, 'point')}</p>
+  <Button>
+    <Link to={`/questions`} style={{ color: "inherit", textDecoration: "none" }}>
+      Chơi Ngay
+    </Link>
+  </Button>
+</Modal>
     </div>
   );
 };

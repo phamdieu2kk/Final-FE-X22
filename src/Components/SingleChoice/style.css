@@ -3,6 +3,7 @@
   justify-content: center;
   align-items: center;
   height: 100%;
+  
 }
 
 /* Đảm bảo rằng nội dung nút radio được căn giữa */
@@ -16,16 +17,16 @@
 
 /* Thêm border cho nút radio */
 .option-single-choice .ant-radio-button-wrapper {
-  width: calc(100% - 2px); /* Độ rộng tính cả border */
-  height: 50px;
-  line-height: 48px;
+  width: 100%; /* Độ rộng tính cả border */
+  height: auto;
+ text-align: center;
   font-size: 16px;
-  border: 1px solid #080000; /* Thay đổi màu border cho phù hợp với các loại khác */
-  border-radius: 5px; /* Áp dụng border-radius để bo tròn góc */
- 
+  border: 1px solid #080000; 
+  border-radius: 8px;
+ padding: 10px
 }
 
 .option-single-choice .ant-radio-button-wrapper:hover {
   background-color: #f2bc3e;
-  color: #080000; /* Đảm bảo màu chữ phù hợp với màu background */
+  color: #080000; 
 }

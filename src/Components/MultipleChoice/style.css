@@ -3,7 +3,8 @@
     flex-wrap: wrap;
     justify-content: center; /* Căn giữa theo chiều ngang */
     align-items: center; /* Căn giữa theo chiều dọc */
-    height: 100%;
+    width: 100%; /* Độ rộng tính cả border */
+  height: auto;
 }
 
 .option-multiple-choice .ant-col {
@@ -13,15 +14,15 @@
 }
 
 .answer-option {
-    border: 1px solid #333;
-    width: 80%; 
-    padding: 10px; 
-    box-sizing: border-box;
-    
+    width: 100%; /* Độ rộng tính cả border */
+    text-align: center;
+    border: 1px solid #080000; /* Thay đổi màu border cho phù hợp với các loại khác */
+    border-radius: 8px; /* Áp dụng border-radius để bo tròn góc */
+    height: auto;
+    padding: 10px;
+
 }
 
 .answer-option.selected {
     background-color: #f2bc3e; 
 }
-
-  
