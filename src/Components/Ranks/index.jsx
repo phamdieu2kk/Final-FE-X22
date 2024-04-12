@@ -16,6 +16,8 @@ const Ranks = () => {
         { name: "Jane Doe", score: 90 },
         { name: "John Smith", score: 70 },
         
+        
+        
        
       ];
       
@@ -47,24 +49,29 @@ const Ranks = () => {
   ];
 
   return (
-    <div className="title-ranks">
+    
+    <div className="ranks-container"
+    style={{
+     paddingLeft:"20px"
+    }}>
       <h1
         style={{
           textAlign: "center",
-          fontFamily: "Playball"
+          fontFamily: "Playball",
         }}
         className="home__title"
       >
         Bảng xếp hạng
       </h1>
-      <Table
+      <Table className="rank__list"
         dataSource={rankList}
         columns={columns}
         loading={loading}
         pagination={false}
-        className="rank__list"
+        
       />
     </div>
+   
   );
 };
 

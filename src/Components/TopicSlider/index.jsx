@@ -48,7 +48,7 @@ const TopicSlider = () => {
 
 <>      
 <div className="slider-container" style={{
-            backgroundColor:"lightgreen"
+            backgroundColor:""
         }}>
       <h1  className="home__title"
        style={{

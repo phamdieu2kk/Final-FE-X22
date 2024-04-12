@@ -7,7 +7,7 @@ const Topic = () => {
   const [topics, setTopics] = useState({ list: [], total: 0 });
   const [isLoading, setIsLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1); // Trang hiện tại
-  const pageSize = 4; // Kích thước trang
+  const pageSize = 8; // Kích thước trang
 
   const fetchTopics = async () => {
     try {
@@ -62,7 +62,7 @@ const Topic = () => {
               <Col key={topic._id} xs={24} sm={12} md={8} lg={6} xl={6}>
                 <Card
                   title={topic.title}
-                  style={{ width: "90%" }}
+                  style={{ width: "100%" }}
                   hoverable
                   cover={
                     <img
