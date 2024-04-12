@@ -45,16 +45,20 @@ const TopicSlider = () => {
     // }, [currentPage]); // Chạy useEffect mỗi khi currentPage thay đổi
 
     return (
-<>            <h1
-                style={{
-                    textAlign: "center",
-                    fontFamily: "Playball"
-                }}
-                className="home__title"
-            >
-                Chủ đề nổi bật
+
+<>      
+<div className="slider-container" style={{
+            backgroundColor:"lightgreen"
+        }}>
+      <h1  className="home__title"
+       style={{
+        textAlign: "center",
+        fontFamily: "Playball",
+    }}
+    >
+        Chủ đề nổi bật
             </h1>
-            <section className="section-danhmuc">
+            <section className="topic-list">
                 <Row gutter={[16, 16]}>
                     {isLoading ? (
                         <p>Loading...</p>
@@ -70,7 +74,7 @@ const TopicSlider = () => {
                             >
                            <Card
                   title={topic.title}
-                  style={{ width: "90%" }}
+                  style={{ width: "100%"}}
                   hoverable
                   cover={
                     <img
@@ -116,6 +120,7 @@ const TopicSlider = () => {
                     current={currentPage} // Trang hiện tại
                     onChange={handlePageChange} // Xử lý khi chuyển trang
                 />
+            </div>
             </div>
         </>
     );

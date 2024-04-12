@@ -153,6 +153,7 @@ const Questions = () => {
     };
 
     return (
+        <div className="container">
         <div className="questions-container">
             {questions.length > 0 && currentIndex < questions.length && (
                 <div className="question-card">
@@ -243,6 +244,7 @@ const Questions = () => {
             >
                 <p>Bạn có chắc chắn muốn nộp bài không?</p>
             </Modal>
+        </div>
         </div>
     );
 };

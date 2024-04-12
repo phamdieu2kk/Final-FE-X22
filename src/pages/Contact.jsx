@@ -8,10 +8,11 @@ const Contact = () => {
   return (
     <>
     
-      <div className="content">
+   
         <div className="title-home">
           <Breadcrumb items={[{ title: <Link to="/">Trang chủ</Link>}, { title: 'Liên hệ ' }]} />
         </div>
+        <div className="container">
         <div className="contact-forms">
         <div className="container aos-init aos-animate">
   <div className="row mt-5">

@@ -1,25 +1,7 @@
-/* style.css */
-.title-slider {
-  padding: 20px;
-}
 
-.home__title {
-  font-size: 24px;
+.title-ranks {
   font-family: "Playball", cursive;
-  margin-bottom: 20px;
 }
-
-.rank__list {
-  border-radius: 8px;
-  overflow: hidden;
-}
-
-.ant-table-wrapper {
-  border-radius: 8px;
-  overflow: hidden;
-  box-shadow: 15px 15px 0px rgba(6, 0, 0, 0.1);
-}
-
 
 .ant-table-tbody > tr > td,
 .ant-table-thead > tr > th {

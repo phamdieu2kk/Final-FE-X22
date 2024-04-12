@@ -47,7 +47,7 @@ const Challenges = () => {
     }
   };
   return (
-    <div>
+    <div className="container">
       <div className="title-home">
         <Breadcrumb>
           <Breadcrumb.Item>
