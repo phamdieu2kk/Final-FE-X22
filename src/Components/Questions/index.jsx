@@ -1,3 +1,4 @@
+/*eslint-disable*/
 import { useEffect, useState } from "react";
 import SingleChoice from "../SingleChoice";
 import MultipleChoice from "../MultipleChoice";
@@ -5,8 +6,7 @@ import { Button, Flex, Result, Modal } from "antd";
 import "./style.css";
 import ArrangeQuestions from "../ArrangeQuestions";
 import api from "../../api";
-
-// import { useLocation } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 
 const QUESTION_TYPE = {
     SINGLE_CHOICE: "single-choice",
@@ -15,8 +15,7 @@ const QUESTION_TYPE = {
 };
 
 const Questions = () => {
-    // const location = useLocation();
-    // const queries = new URLSearchParams(location.search);
+    
     const [questions, setQuestions] = useState([]);
     const [currentIndex, setCurrentIndex] = useState(0);
     const [answerList, setAnswerList] = useState([]);
@@ -27,11 +26,17 @@ const Questions = () => {
     const [confirmSubmit, setConfirmSubmit] = useState(false); // State để kiểm soát xác nhận nộp bài
     const [isTimerRunning, setIsTimerRunning] = useState(true); // State để kiểm soát việc chạy thời gian
     const [isCorrectAnswerList, setIsCorrectAnswerList] = useState([]);
+    const [searchParams, setSearchParams] = useSearchParams()
 
     useEffect(() => {
         (async () => {
             try {
-                const res = await api.getQuestion.invoke({});
+                const challengeId = searchParams.get("challengeId");
+                const res = await api.getQuestion.invoke({
+                    queries: {
+                        challengeId:challengeId
+                    }
+                });
                 setQuestions(res.data.questionList); // Assuming res.data contains the questions
                 console.log(res.data);
             } catch (error) {
@@ -143,13 +148,25 @@ const Questions = () => {
         setConfirmSubmit(true); // Hiển thị xác nhận trước khi nộp bài
     };
 
-    const handleConfirmSubmit = () => {
+    const handleConfirmSubmit = async () => {
         console.log("nộp bài");
-        calculateScore();
+
+        console.log(answerList);
+
+        const response = await api.checkChallengeAnswers.invoke({
+            data: {
+                challengeId: searchParams.get("challengeId"),
+                answerList
+            }
+        });
+
+        console.log(response);
+
+        // calculateScore();
         setShowResult(true); // Hiển thị kết quả khi bấm nút "Nộp bài"
         setConfirmSubmit(false); // Đặt lại state của xác nhận
         setIsTimerRunning(false); // Dừng thời gian
-        // fecth đến backend gửi danh sách câu trả lời
+        setScore(response.data.point)
     };
 
     return (
@@ -225,17 +242,22 @@ const Questions = () => {
                     </div>
                 </div>
             )}
+            <div className="result-container">
             {showResult && (
                 <Result
                     status="success"
                     title="Hoàn thành thử thách!"
-                    subTitle={`Bạn đã làm đúng: ${
-                        isCorrectAnswerList.filter(
-                            (isCorrectAnswer) => isCorrectAnswer.isCorrect
-                        ).length
-                    }/${isCorrectAnswerList.length} câu`}
+                    subTitle= {`
+                        Tổng số câu hỏi: ${questions.length},
+                        Tổng số điểm: ${score},
+                        Bạn đã làm đúng: ${
+                            isCorrectAnswerList.filter(
+                                (isCorrectAnswer) => isCorrectAnswer.isCorrect
+                            ).length
+                        }/${isCorrectAnswerList.length} câu `}
                 />
             )}
+        </div>
             <Modal
                 title="Xác nhận nộp bài"
                 open={confirmSubmit}

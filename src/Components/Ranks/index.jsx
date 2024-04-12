@@ -14,11 +14,8 @@ const Ranks = () => {
       const sampleData = [
         { name: "John Doe", score: 100 },
         { name: "Jane Doe", score: 90 },
-        { name: "John Smith", score: 70 },
-        
-        
-        
-       
+        { name: "John Smith", score: 80 },
+        { name: "John", score: 70 },
       ];
       
       await new Promise(resolve => setTimeout(resolve, 1000));
@@ -54,21 +51,18 @@ const Ranks = () => {
     style={{
      paddingLeft:"20px"
     }}>
-      <h1
+      <h1 className="home__title"
         style={{
           textAlign: "center",
           fontFamily: "Playball",
         }}
-        className="home__title"
-      >
-        Bảng xếp hạng
+        > Bảng xếp hạng
       </h1>
       <Table className="rank__list"
         dataSource={rankList}
         columns={columns}
         loading={loading}
         pagination={false}
-        
       />
     </div>
    
