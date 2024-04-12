@@ -1,3 +1,4 @@
+/*eslint-disable*/
 import { useEffect, useState } from "react";
 import { Breadcrumb,Button, Card, Pagination, Row, Col } from "antd";
 import { Link } from "react-router-dom";
@@ -8,11 +9,10 @@ const Topic = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1); // Trang hiện tại
   const pageSize = 8; // Kích thước trang
-
   const fetchTopics = async () => {
     try {
       const response = await api.topic.invoke({ 
-        queries: {
+        queries: { 
           page: currentPage,
           pageSize,
       },
@@ -62,7 +62,7 @@ const Topic = () => {
               <Col key={topic._id} xs={24} sm={12} md={8} lg={6} xl={6}>
                 <Card
                   title={topic.title}
-                  style={{ width: "100%" }}
+                  style={{ width: "100%", overflow:"hidden" }}
                   hoverable
                   cover={
                     <img

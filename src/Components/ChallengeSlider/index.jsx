@@ -25,7 +25,13 @@ const ChallangeSlider = () => {
             console.error("Lỗi khi tìm thử thách:", error);
         }
     };
-  
+    const convertToVietnamese = (value, type) => {
+        if (type === 'level') {
+          return value === 'easy' ? 'Dễ' : value;
+        } else if (type === 'point') {
+          return value === 'point' ? 'Điểm' : value;
+        }
+      };
     useEffect(() => {
         fetchChallenges();
     }, [currentPage, pageSize]);
@@ -63,20 +69,20 @@ const ChallangeSlider = () => {
                 </Row>
             </section>
 
-            <Modal
-                title={selectedChallenge?.challengeName}
-                visible={!!selectedChallenge}
-                onCancel={handleCloseDetail}
-                footer={null}
-            >
-                <p>{selectedChallenge?.level}</p>
-                <p>{selectedChallenge?.point}</p>
-                <Button>
-                    <Link to={`/questions`} style={{ color: "inherit", textDecoration: "none" }}>
-                        Chơi Ngay
-                    </Link>
-                </Button>
-            </Modal>
+           <Modal
+  title={selectedChallenge?.challengeName}
+  visible={!!selectedChallenge}
+  onCancel={handleCloseDetail}
+  footer={null}
+>
+  <p>{convertToVietnamese(selectedChallenge?.level, 'level')}</p>
+  <p>{convertToVietnamese(selectedChallenge?.point, 'point')}</p>
+  <Button>
+    <Link to={`/questions`} style={{ color: "inherit", textDecoration: "none" }}>
+      Chơi Ngay
+    </Link>
+  </Button>
+</Modal>
         </div>
     );
 };

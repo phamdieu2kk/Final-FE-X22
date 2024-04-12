@@ -1,5 +1,6 @@
+/*eslint-disable*/
 import React, { useState, useEffect } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useSearchParams } from "react-router-dom";
 import { Breadcrumb, Card, Button, Modal, Pagination, Row, Col } from "antd";
 import api from "../../api";
 
@@ -8,16 +9,17 @@ const Challenges = () => {
   const [selectedChallenge, setSelectedChallenge] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
   const pageSize = 10;
-  const location = useLocation();
-  const queries = new URLSearchParams(location.search);
+  const [searchParams, setSearchParams] = useSearchParams()
 
   useEffect(() => {
     const fetchChallenges = async () => {
+      const topicId = searchParams.get("topicId");
       try {
         const response = await api.getChallengeList.invoke({
           queries: {
             page: currentPage,
             pageSize,
+            topicId
         },
         });
         setChallenges(response.data.challengeList);
@@ -48,7 +50,7 @@ const Challenges = () => {
   };
   return (
     <>
-   
+    <div className="container">
       <div className="title-home">
         <Breadcrumb>
           <Breadcrumb.Item>
@@ -57,7 +59,7 @@ const Challenges = () => {
           <Breadcrumb.Item>Thử thách</Breadcrumb.Item>
         </Breadcrumb>
       </div>
-      <div className="container">
+     
       <Row gutter={[16, 16]}>
         {challenges.map((challenge) => (
           <Col key={challenge._id} xs={24} sm={12} md={8} lg={6} xl={6}>
@@ -104,7 +106,7 @@ const Challenges = () => {
   <p>{convertToVietnamese(selectedChallenge?.level, 'level')}</p>
   <p>{convertToVietnamese(selectedChallenge?.point, 'point')}</p>
   <Button>
-    <Link to={`/questions`} style={{ color: "inherit", textDecoration: "none" }}>
+    <Link to={`/questions?challengeId=${selectedChallenge?._id}`} style={{ color: "inherit", textDecoration: "none" }}>
       Chơi Ngay
     </Link>
   </Button>
