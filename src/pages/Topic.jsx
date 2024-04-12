@@ -62,7 +62,7 @@ const Topic = () => {
               <Col key={topic._id} xs={24} sm={12} md={8} lg={6} xl={6}>
                 <Card
                   title={topic.title}
-                  style={{ width: "100%", overflow:"hidden" }}
+                  style={{ width: "100%", height: "100%", position: "relative" }}
                   hoverable
                   cover={
                     <img
@@ -84,13 +84,11 @@ const Topic = () => {
                   style={{ fontStyle: "italic"}}> 
                   {topic.description}</p>
                     <h3>
-                     <Button>
                       <Link to=
                      {`/challenge?topicId=${topic._id}`}>
                       {topic.topicName}
                       </Link>
-                      </Button> 
-                      </h3>
+                       </h3>
                     
                   </div>
                 </Card>

@@ -1,3 +1,4 @@
+/*eslint-disable*/
 import { useState, useEffect } from "react";
 import { Button, Modal, Pagination, Row, Col } from "antd";
 import { Link } from "react-router-dom";
@@ -78,7 +79,7 @@ const ChallangeSlider = () => {
   <p>{convertToVietnamese(selectedChallenge?.level, 'level')}</p>
   <p>{convertToVietnamese(selectedChallenge?.point, 'point')}</p>
   <Button>
-    <Link to={`/questions`} style={{ color: "inherit", textDecoration: "none" }}>
+  <Link to={`/questions?challengeId=${selectedChallenge?._id}`} style={{ color: "inherit", textDecoration: "none" }}>
       Chơi Ngay
     </Link>
   </Button>

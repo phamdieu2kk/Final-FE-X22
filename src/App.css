@@ -70,23 +70,17 @@
 
 /* CSS Topic */
 
-.topic-detail h3 {
-  text-align: center;
-}
 .topic-detail h3 a{
   font-family: 'Playball';
-  color: rgba(254, 0, 0, 0.996);
-  font-size: 16px;
+  /* color: rgba(254, 0, 0, 0.996); */
+ 
 }
-
-
-
 
 /* CSS instruction*/
 
 .title-instruction {
   font-size: 30px;
-  text-align: center;
+  
   font-family: 'Playball';
 }
 

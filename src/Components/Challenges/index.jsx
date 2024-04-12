@@ -59,7 +59,6 @@ const Challenges = () => {
           <Breadcrumb.Item>Thử thách</Breadcrumb.Item>
         </Breadcrumb>
       </div>
-     
       <Row gutter={[16, 16]}>
         {challenges.map((challenge) => (
           <Col key={challenge._id} xs={24} sm={12} md={8} lg={6} xl={6}>
