@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Row, Col, Card, Pagination } from "antd"; // Import Button component from antd
 import api from "../../api";
 import { Link } from "react-router-dom";
@@ -33,8 +33,8 @@ const TopicSlider = () => {
     }, [currentPage]); // Fetch dữ liệu mới khi currentPage thay đổi
 
     const handlePageChange = (page) => {
+        setIsLoading(true); // Set isLoading to true before initiating API request
         setCurrentPage(page);
-        setIsLoading(true); // Reset isLoading state to true when changing pages
     };
 
     // useEffect(() => {
@@ -45,14 +45,14 @@ const TopicSlider = () => {
     // }, [currentPage]); // Chạy useEffect mỗi khi currentPage thay đổi
 
     return (
-        <div className="container-page">
-            <h1
+<>            <h1
                 style={{
                     textAlign: "center",
+                    fontFamily: "Playball"
                 }}
                 className="home__title"
             >
-                Thử thách nổi bật
+                Chủ đề nổi bật
             </h1>
             <section className="section-danhmuc">
                 <Row gutter={[16, 16]}>
@@ -68,32 +68,40 @@ const TopicSlider = () => {
                                 lg={6}
                                 xl={6}
                             >
-                                <Card
-                                    title={topic.title}
-                                    style={{ width: "90%" }}
-                                >
-                                    <img
-                                        alt="topic-img"
-                                        src={
-                                            topic.image
-                                                ? topic.image
-                                                : "https://2.bp.blogspot.com/-G3nYpK1Gnlw/VI2BDS9g38I/AAAAAAAAiKk/DTPhZEDuKPM/s1600/cau-do-dan-gian.jpg"
-                                        }
-                                        style={{
-                                            width: "100%",
-                                            height: "auto",
-                                        }}
-                                    />
-                                    <div className="topic-detail">
-                                        <h3>
-                                            <Link
-                                                to={`/challenge?topicId=${topic._id}`}
-                                            >
-                                                {topic.topicName}
-                                            </Link>
-                                        </h3>
-                                    </div>
-                                </Card>
+                           <Card
+                  title={topic.title}
+                  style={{ width: "90%" }}
+                  hoverable
+                  cover={
+                    <img
+                      style={{ width: "100%", height: "200px",overflow: "hidden" , objectFit : "cover" }}
+                        alt="topic-img"
+                        src={
+                          
+                          topic.imageUrl
+                            ? topic.imageUrl
+                            : "https://2.bp.blogspot.com/-G3nYpK1Gnlw/VI2BDS9g38I/AAAAAAAAiKk/DTPhZEDuKPM/s1600/cau-do-dan-gian.jpg"
+                        }
+                       
+                      />
+                    
+                  }
+                >
+                  <div className="topic-detail">
+                  <p  style={{ fontStyle: "italic"}}>
+
+                    Miêu tả sơ lượt: {topic.description}</p>
+                    <h3>
+                    
+                      <Link to=
+                     {`/challenge?topicId=${topic._id}`}>
+                      {topic.topicName}
+                      </Link>
+                     
+                      </h3>
+                    
+                  </div>
+                </Card>
                             </Col>
                         ))
                     )}
@@ -109,7 +117,7 @@ const TopicSlider = () => {
                     onChange={handlePageChange} // Xử lý khi chuyển trang
                 />
             </div>
-        </div>
+        </>
     );
 };
 
