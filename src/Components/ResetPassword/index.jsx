@@ -21,7 +21,7 @@ const ResetPassword = () => {
         
         try {
             const response = await axios.post(
-                "http://103.30.10.141:3000/api/v1/user/resetpassword",
+                "http://20.198.217.162:3000/api/v1/user/resetpassword",
                 { password }
             );
             const data = response.data;

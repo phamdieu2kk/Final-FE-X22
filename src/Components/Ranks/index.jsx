@@ -60,7 +60,7 @@ const Ranks = () => {
     columns={columns}
     loading={loading}
     pagination={false}
-    className="custom-table"
+    className="custom-table" 
   />
 </div>
     </div>
