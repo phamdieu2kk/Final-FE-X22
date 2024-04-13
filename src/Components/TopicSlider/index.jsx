@@ -1,5 +1,6 @@
+/*eslint-disable*/
 import { useEffect, useState } from "react";
-import { Row, Col, Card, Pagination } from "antd"; // Import Button component from antd
+import { Row, Col, Card, Pagination,Typography } from "antd"; // Import Button component from antd
 import api from "../../api";
 import { Link } from "react-router-dom";
 
@@ -95,14 +96,18 @@ const TopicSlider = () => {
                   <p  style={{ fontStyle: "italic"}}>
 
                     Miêu tả sơ lượt: {topic.description}</p>
-                    <h3>
-                    
-                      <Link to=
+                   
+                    <Typography.Text style={{
+                        fontSize:"16px",
+                        fontFamily:"Playball",
+                        
+                    }}><Link to=
                      {`/challenge?topicId=${topic._id}`}>
                       {topic.topicName}
-                      </Link>
+                      </Link></Typography.Text>
+                      
                      
-                      </h3>
+                     
                     
                   </div>
                 </Card>

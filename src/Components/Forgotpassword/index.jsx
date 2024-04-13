@@ -1,4 +1,4 @@
-
+/*eslint-disable*/
 
 import {  useNavigate } from "react-router-dom";
 import {  Button, Form, Input, Typography, notification } from "antd";
@@ -12,7 +12,7 @@ const Forgotpassword = () => {
     const handleForgotpasswordForm = async () => {
         try {
             const response = await axios.post(
-                "http://103.30.10.141:3000/api/v1/user/forgotpassword",
+                "http://20.198.217.162:3000/api/v1/user/forgotpassword",
                 { email }
             );
             const data = response.data;

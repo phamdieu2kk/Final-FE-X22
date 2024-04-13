@@ -1,6 +1,6 @@
 /*eslint-disable*/
 import { useState, useEffect } from "react";
-import { Button, Modal, Pagination, Row, Col } from "antd";
+import { Button, Modal, Pagination, Row, Col ,Flex} from "antd";
 import { Link } from "react-router-dom";
 import { CaretLeftOutlined, CaretRightOutlined } from "@ant-design/icons"; // Import icons
 import api from "../../api";
@@ -49,11 +49,13 @@ const ChallangeSlider = () => {
 
     return (
         <div className="slider-container" style={{ backgroundColor: "" }}>
-            <h1 style={{ textAlign: "center", fontFamily: "Playball" }} className="home__title">Thử thách nổi bật</h1>
-            <div className="button-container" style={{ display: "flex", padding:"10px" }}>
+            <h1 style={{ textAlign: "center", fontFamily: "Playball" }} className="home-title">Thử thách nổi bật</h1>
+            <div style={{ textAlign: "right"}} >
                 <Button onClick={handlePrevPage}><CaretLeftOutlined /></Button>
                 <Button onClick={handleNextPage}><CaretRightOutlined /></Button>
+            
             </div>
+                
             <section className="challenge-slider">
                 <Row wrap={false} gutter={[16, 16]}>
                     {challenges.map((challenge) => (

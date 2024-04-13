@@ -1,3 +1,4 @@
+/*eslint-disable*/
 import { UploadOutlined } from "@ant-design/icons";
 import { Button } from "antd";
 import { Upload } from 'antd';

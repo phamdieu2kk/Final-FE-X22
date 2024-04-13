@@ -130,8 +130,12 @@ export default function Header() {
                 ) : (
                     <Flex justify="flex-end">
                         {/* ------------- id------------------- */}
-                        <span>
-                            {currentUser ? currentUser.user.name : "test"}
+                        <span style={{
+                            color:"yellow",
+                            margin:"auto",
+                            padding:"auto"
+                        }}> 
+                        ID: {currentUser ? currentUser.user.name : "test"}
                         </span>
                         <Dropdown
                             overlay={loggedMenu}
@@ -145,7 +149,10 @@ export default function Header() {
                             >
                                 <UserOutlined
                                     style={{
+<<<<<<< HEAD
                                         background: "none",
+=======
+>>>>>>> 62b6cf5 ( update ranks , fix question, challenge, home)
                                         width: "100%",
                                         color: "rgb(246, 236, 236)",
                                         textAlign: "center",
@@ -160,4 +167,8 @@ export default function Header() {
             </Col>
         </Row>
     );
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 62b6cf5 ( update ranks , fix question, challenge, home)

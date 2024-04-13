@@ -1,3 +1,4 @@
+/*eslint-disable*/
 import { useState, useEffect, useContext } from "react";
 import { Form, Input, Button, notification } from "antd";
 import UploadImage from "../Components/UploadImage";
@@ -70,7 +71,7 @@ const UpdateAccountForm = () => {
     };
 
     return (
-        <div className="content">
+        <div className="container">
             <Form
                 className="updateAccountForm"
                 layout="vertical"
