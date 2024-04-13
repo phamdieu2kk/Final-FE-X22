@@ -1,6 +1,6 @@
 /*eslint-disable*/
 import { useEffect, useState } from "react";
-import { Breadcrumb,Button, Card, Pagination, Row, Col } from "antd";
+import { Breadcrumb,Typography, Card, Pagination, Row, Col } from "antd";
 import { Link } from "react-router-dom";
 import api from "../api";
 
@@ -61,37 +61,33 @@ const Topic = () => {
             topics.list.map((topic) => (
               <Col key={topic._id} xs={24} sm={12} md={8} lg={6} xl={6}>
                 <Card
-                  title={topic.title}
-                  style={{ width: "100%", height: "100%", position: "relative" }}
-                  hoverable
-                  cover={
-                    <img
-                      style={{ width: "100%", height: "200px",overflow: "hidden" , objectFit : "cover" }}
-                        alt="topic-img"
-                        src={
-                          
-                          topic.imageUrl
-                            ? topic.imageUrl
-                            : "https://2.bp.blogspot.com/-G3nYpK1Gnlw/VI2BDS9g38I/AAAAAAAAiKk/DTPhZEDuKPM/s1600/cau-do-dan-gian.jpg"
-                        }
-                       
-                      />
-                    
-                  }
-                >
-                  <div className="topic-detail">
-                  <p 
-                  style={{ fontStyle: "italic"}}> 
-                  {topic.description}</p>
-                    <h3>
-                      <Link to=
-                     {`/challenge?topicId=${topic._id}`}>
-                      {topic.topicName}
-                      </Link>
-                       </h3>
-                    
-                  </div>
-                </Card>
+  title={topic.title}
+  style={{ width: "100%", height: "100%", position: "relative" }}
+  hoverable
+  cover={
+    <img
+      style={{
+        width: "100%",
+        height: "200px",
+        overflow: "hidden",
+        objectFit: "cover", // Chỉnh sửa kích thước ảnh
+      }}
+      alt="topic-img"
+      src={
+        topic.imageUrl
+          ? topic.imageUrl
+          : "https://2.bp.blogspot.com/-G3nYpK1Gnlw/VI2BDS9g38I/AAAAAAAAiKk/DTPhZEDuKPM/s1600/cau-do-dan-gian.jpg"
+      }
+    />
+  }
+>
+  <div className="topic-detail">
+    <p className="topic-description">{topic.description}</p>
+    <Typography.Text className="topic-title">
+      <Link to={`/challenge?topicId=${topic._id}`}>{topic.topicName}</Link>
+    </Typography.Text>
+  </div>
+</Card>
               </Col>
             ))
           )}

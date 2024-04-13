@@ -14,7 +14,7 @@ const Home = () => {
               <ChallangeSlider/>
             </div>
           </Col>
-          <Col span={8}>
+          <Col span={8} style={{ display: "flex", alignItems: "center" }}>
             <Ranks />
           </Col>
         </Row>

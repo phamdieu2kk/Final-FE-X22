@@ -13,16 +13,9 @@
   background-image: url('https://trangnguyentiengviet.vn/assets/images/bg-pattern2.png');
 }
 
-/* CSS để căn chỉnh hình ảnh trong Carousel */
-.Carousel-slider {
+.col-wrapper {
   display: flex;
-  justify-content: center; /* Căn giữa theo chiều ngang */
-}
-
-.Carousel-slider img {
-  max-width: 100%;
-  max-height: 100%;
-  object-fit: contain; /* Giữ tỷ lệ của hình ảnh */
+  align-items: center;
 }
 
 /* CSS register , login */
@@ -63,24 +56,28 @@
 .title-home {
   margin: 25px;
 }
-.title-home span {
-  margin-left: 10px;
-  margin-right: 10px;
-}
 
 /* CSS Topic */
 
+.topic-description {
+  font-style: italic;
+  font-size: 14px;
+  color: #000000; /* Màu chữ xám */
+}
+
+.topic-title {
+  font-family: "Playball", cursive;
+  font-size: 18px;
+
+}
 .topic-detail h3 a{
   font-family: 'Playball';
-  /* color: rgba(254, 0, 0, 0.996); */
- 
 }
 
 /* CSS instruction*/
 
 .title-instruction {
   font-size: 30px;
-  
   font-family: 'Playball';
 }
 

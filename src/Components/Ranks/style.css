@@ -1,1 +1,15 @@
-
+.table-wrapper {
+    max-height: 300px; 
+    overflow-y: auto;
+  }
+  .rank-column {
+    color: blue;
+  }
+  
+  .name-column {
+    color: red; 
+  }
+  
+  .totalPoint-column {
+    color: green;
+  }
