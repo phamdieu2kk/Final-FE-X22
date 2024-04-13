@@ -3,7 +3,7 @@ import { Table } from "antd";
 import api from "../../api";
 import "./style.css";
 
-const RankList = () => {
+const Ranks = () => {
   const [rankList, setRankList] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -67,4 +67,4 @@ const RankList = () => {
   );
 };
 
-export default RankList;
+export default Ranks;
