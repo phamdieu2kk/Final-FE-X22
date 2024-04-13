@@ -20,12 +20,14 @@ const UpdateAccountForm = () => {
 
   const handleFinish = async (values) => {
     try {
-      const response = await api.putUpdateAccountForm(values);
+      // Attach token to the request headers
+      const token = localStorage.getItem("accessToken"); // Assuming you store the token in localStorage
+      const response = await api.putUpdateAccountForm(values, { headers: { Authorization: `Bearer ${token}` } });
   
       if (response.success) {
+        // Update access token
         setAccessToken(`Bearer ${response.data.token}`);
   
-        
         setNotificationMessage({
           type: "success",
           title: "Thành công",

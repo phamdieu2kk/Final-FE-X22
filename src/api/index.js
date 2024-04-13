@@ -9,7 +9,8 @@ const api = {
     putUpdateAccountForm: apiElement("PUT", "/user/update"),
     getQuestion: apiElement("GET", "question"),
     checkAnswer: apiElement("POST", `/answer/:questionId`),
-    checkChallengeAnswers: apiElement("POST", "/challenge/check-answers")
+    checkChallengeAnswers: apiElement("POST", "/challenge/check-answers"),
+    getRankList: apiElement("GET", "/challenge/rank"),
 };
 
 export default api;

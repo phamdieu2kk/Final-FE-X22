@@ -26,13 +26,7 @@ const ChallangeSlider = () => {
             console.error("Lỗi khi tìm thử thách:", error);
         }
     };
-    const convertToVietnamese = (value, type) => {
-        if (type === 'level') {
-          return value === 'easy' ? 'Dễ' : value;
-        } else if (type === 'point') {
-          return value === 'point' ? 'Điểm' : value;
-        }
-      };
+   
     useEffect(() => {
         fetchChallenges();
     }, [currentPage, pageSize]);
@@ -64,28 +58,25 @@ const ChallangeSlider = () => {
                 <Row wrap={false} gutter={[16, 16]}>
                     {challenges.map((challenge) => (
                         <Col key={challenge._id} xs={24} sm={12} md={8} lg={6} xl={6}>
-                            <ChallengeCard challenge={challenge} handleShowDetail={handleShowDetail} />
-                        </Col>
+                        <ChallengeCard challenge={challenge} handleShowDetail={handleShowDetail} />
+                       </Col>
                     ))}
                 </Row>
             </section>
-
-           <Modal
-  title={selectedChallenge?.challengeName}
-  visible={!!selectedChallenge}
-  onCancel={handleCloseDetail}
-  footer={null}
->
-  <p>{convertToVietnamese(selectedChallenge?.level, 'level')}</p>
-  <p>{convertToVietnamese(selectedChallenge?.point, 'point')}</p>
-  <Button>
-  <Link to={`/questions?challengeId=${selectedChallenge?._id}`} style={{ color: "inherit", textDecoration: "none" }}>
-      Chơi Ngay
-    </Link>
-  </Button>
-</Modal>
-        </div>
-    );
-};
+            <Modal
+            title={selectedChallenge?.challengeName}
+            visible={!!selectedChallenge}
+            onCancel={handleCloseDetail}
+            footer={null}
+            >
+                <Button>
+                    <Link to={`/questions?challengeId=${selectedChallenge?._id}`} style={{ color: "inherit", textDecoration: "none" }}>
+                        Chơi Ngay
+                        </Link>
+                        </Button>
+                        </Modal>
+                        </div>
+                        );
+                    };
 
 export default ChallangeSlider;

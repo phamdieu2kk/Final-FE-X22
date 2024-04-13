@@ -2,7 +2,7 @@ import "./style.css";
 import{ useState, useEffect } from "react";
 import {  Table } from "antd";
 import "./style.css";
-
+import api from "../../api";
 const Ranks = () => {
   const [rankList, setRankList] = useState([]);
   const [loading, setLoading] = useState(true);
