@@ -1,5 +1,3 @@
-/* eslint-disable */
-
 import { useState } from "react";
 import { Checkbox, Row, Col } from "antd";
 import "./style.css";
@@ -26,7 +24,7 @@ const MultipleChoice = ({ currentQuestion, onChangeAnswer }) => {
         });
     };
 
-    const colCount = Math.ceil(currentQuestion.answerList.length / 2);
+    const colCount = 2; // Số cột bạn muốn chia
 
     return (
         <div className="option-multiple-choice">
@@ -36,7 +34,7 @@ const MultipleChoice = ({ currentQuestion, onChangeAnswer }) => {
                 onChange={handleChangeAnswer}
             >
                 <Row gutter={[16, 16]}>
-                    {currentQuestion.answerList.map((answer) => (
+                    {currentQuestion.answerList.map((answer, index) => (
                         <Col key={answer._id} span={24 / colCount}>
                             <div
                                 className={`answer-option ${

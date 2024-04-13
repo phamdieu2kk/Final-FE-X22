@@ -25,6 +25,7 @@ const UpdateAccountForm = () => {
         if (currentUser) {
             updateForm.setFieldValue("name", currentUser.user.name);
             updateForm.setFieldValue("email", currentUser.user.email);
+            // updateForm.setFieldValue("gender", currentUser.user.gender);
             updateForm.setFieldValue("bio", currentUser.user.bio);
         }
     }, [currentUser]);
@@ -116,6 +117,20 @@ const UpdateAccountForm = () => {
                 >
                     <Input maxLength={256} />
                 </Form.Item>
+                
+                {/* <Form.Item
+                    label="Giới tính"
+                    name="gender"
+                    rules={[
+                        {
+                            required: true,
+                            message: "Giới tính bắt buộc nhập",
+                            whitespace: true,
+                        },
+                    ]}
+                >
+                    <Input maxLength={100} value="123" />
+                </Form.Item> */}
 
                 {/* <Form.Item
                     label="Mật khẩu"
