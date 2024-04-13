@@ -1,28 +1,32 @@
-
-.question-card {
-  width: 90%; /* Định dạng chiều rộng của khung chứa nội dung */
-  padding: 20px;
-}
 .questions-container {
   display: flex;
   justify-content: center;
   align-items: center;
   min-height: 80vh;
-
+  margin-top: 30px;
+  
 }
 
+.question-card {
+  width: 100%; /* Định dạng chiều rộng của khung chứa nội dung */
+  padding: 60px;
+  background-color: #39ff3f;
+  
+}
 
 .question-header {
-  /* Khoảng cách giữa câu hỏi và câu trả lời */
-  text-align: center; /* Căn giữa nội dung trong khung chứa câu hỏi */
+  text-align: center; 
   justify-content: center;
   margin: 20px auto;
   padding: 20px;
   border: 1px solid #040404;
   align-items: center;
-
+  background-color: rgb(255,255,0);
+  
 }
-
+.question {
+  font-weight: bold; 
+}
 
 .button-container {
   display: flex;

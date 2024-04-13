@@ -149,10 +149,7 @@ export default function Header() {
                             >
                                 <UserOutlined
                                     style={{
-<<<<<<< HEAD
                                         background: "none",
-=======
->>>>>>> 62b6cf5 ( update ranks , fix question, challenge, home)
                                         width: "100%",
                                         color: "rgb(246, 236, 236)",
                                         textAlign: "center",
@@ -167,8 +164,4 @@ export default function Header() {
             </Col>
         </Row>
     );
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> 62b6cf5 ( update ranks , fix question, challenge, home)

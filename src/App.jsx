@@ -10,6 +10,7 @@ import useNotification from "antd/es/notification/useNotification";
 import FooterList from "./Components/FooterList";
 import api from "./api";
 import { getAccessToken } from "./api/core";
+import NotificationContext from "./context/NotificationContext";
 function App() {
   const [currentUser, setCurrentUser] = useState();
   const [notify, notifyContextHolder] = useNotification();
@@ -32,16 +33,18 @@ function App() {
   return (
     <BrowserRouter>
       <ConfigProvider>
-        <AuthContext.Provider
-          value={{
-            currentUser,
-            setCurrentUser,
-          }}
-        >
-          {notifyContextHolder}
-          <Header />
-          <AppRouter />
-        </AuthContext.Provider>
+        <NotificationContext.Provider value={{notify, notifyContextHolder}}>
+          <AuthContext.Provider
+            value={{
+              currentUser,
+              setCurrentUser,
+            }}
+          >
+            {notifyContextHolder}
+            <Header />
+            <AppRouter />
+          </AuthContext.Provider>
+        </NotificationContext.Provider>
       </ConfigProvider>
       <FooterList />
     </BrowserRouter>
