@@ -1,7 +1,7 @@
 /*eslint-disable*/
 import React, { useState, useEffect } from "react";
 import { Link, useLocation, useSearchParams } from "react-router-dom";
-import { Breadcrumb, Card, Button, Modal, Pagination, Row, Col } from "antd";
+import {Typography, Flex,Breadcrumb, Card, Button, Modal, Pagination, Row, Col } from "antd";
 import api from "../../api";
 
 const Challenges = () => {
@@ -43,7 +43,16 @@ const Challenges = () => {
   };
   const convertToVietnamese = (value, type) => {
     if (type === 'level') {
-      return value === 'easy' ? 'Dễ' : value;
+      switch (value) {
+        case 'easy':
+          return 'Dễ';
+        case 'medium':
+          return 'Vừa';
+        case 'hard':
+          return 'Khó';
+        default:
+          return value;
+      }
     } else if (type === 'point') {
       return value === 'point' ? 'Điểm' : value;
     }
@@ -80,12 +89,20 @@ const Challenges = () => {
             >
               <Card.Meta
                 title={challenge.challengeName}
-                description={`Level: ${convertToVietnamese(challenge.level, 'level')} - Point: ${convertToVietnamese(challenge.point, 'point')}`}
-              />
-              <Button style={{ marginTop: "20px" }} onClick={() => handleShowDetail(challenge)}>
-                Thử thách
-              </Button>
-            </Card>
+                description={
+                    <>
+                        <Flex justify="space-between" vertical>
+                            <Typography.Text>{`Mức độ: : ${convertToVietnamese(challenge.level, 'level')}`}</Typography.Text>
+                            <Typography.Text>{`Điểm : ${convertToVietnamese(challenge.point, 'point')}`}</Typography.Text>
+                            
+                            <Button style={{ marginTop: "20px", width: "100%" }} onClick={() => handleShowDetail(challenge)}>
+                                Thử thách
+                            </Button>
+                        </Flex>
+                    </>
+                }
+            />
+        </Card>
           </Col>
         ))}
       </Row>
