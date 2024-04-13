@@ -6,27 +6,22 @@
   
 }
 
-/* Đảm bảo rằng nội dung nút radio được căn giữa */
 .option-single-choice .ant-radio-group {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   text-align: center;
+  width: 90%;
 }
 
 /* Thêm border cho nút radio */
 .option-single-choice .ant-radio-button-wrapper {
-  width: 100%; /* Độ rộng tính cả border */
-  height: auto;
- text-align: center;
-  font-size: 16px;
-  border: 1px solid #080000; 
-  border-radius: 50px;
- padding: 10px
-}
-
-.option-single-choice .ant-radio-button-wrapper:hover {
-  background-color: #f2bc3e;
-  color: #080000; 
+  display: flex;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  height: 80px;
+  border: 1px solid #080000;
+  
 }

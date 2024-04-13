@@ -11,13 +11,20 @@ const Forgotpassword = () => {
 
     const handleForgotpasswordForm = async () => {
         try {
+
             const response = await axios.post(
                 "http://20.198.217.162:3000/api/v1/user/forgotpassword",
                 { email }
             );
+
+            // const response = await api.postForgotpassword.invoke({
+            //    data: {email}
+            // });
+
+
             const data = response.data;
             alert(data?.message);
-            // navigate("/reset-password");
+            navigate("/reset-password");
         } catch (error) {
             alert(error.response?.data?.message ?? error.response?.data);
         }

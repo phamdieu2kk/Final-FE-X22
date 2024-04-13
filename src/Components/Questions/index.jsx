@@ -18,7 +18,7 @@ const Questions = () => {
     const [questions, setQuestions] = useState([]);
     const [currentIndex, setCurrentIndex] = useState(0);
     const [answerList, setAnswerList] = useState([]);
-    const [timeLeft, setTimeLeft] = useState(120); // Thời gian còn lại ban đầu: 2 phút * 60 giây/phút
+    const [timeLeft, setTimeLeft] = useState(180); // Thời gian còn lại ban đầu: 2 phút * 60 giây/phút
     const [timeUp, setTimeUp] = useState(false);
     const [showResult, setShowResult] = useState(false); // Biến để kiểm soát hiển thị kết quả
     const [score, setScore] = useState(0); // State để lưu điểm số
@@ -139,24 +139,23 @@ const Questions = () => {
                 {questions.length > 0 && currentIndex < questions.length && (
                     <div className="question-card">
                         <Flex justify="space-between" align="center">
-                            <h6>
+                            <h5>
                                 Số câu hỏi: {currentIndex + 1}/
-                                {questions.length} - Loại:{" "}
-                                {questions[currentIndex].type}
-                            </h6>
-                            <h6>Score: </h6>
-                            <h6>
+                                {questions.length} 
+                            </h5>
+                            <h5>Loại:{" "}
+                                {questions[currentIndex].type} </h5>
+                            <h5>
                                 Thời gian: {Math.floor(timeLeft / 60)}:
                                 {timeLeft % 60 < 10
                                     ? `0${timeLeft % 60}`
                                     : timeLeft % 60}
-                            </h6>
+                            </h5>
                         </Flex>
                         <div className="question-header">
-                            <h3 className="question">
-                                {questions[currentIndex].question}
-                            </h3>
-                            {/* Add question container here if needed */}
+                            <h2 className="question">
+                               Câu hỏi: {questions[currentIndex].question}
+                            </h2>
                         </div>
                         <div className="question-content">
                             {questions[currentIndex].type ===

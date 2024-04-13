@@ -3,6 +3,8 @@ import { apiElement } from "./core";
 const api = {
     register: apiElement("POST", "/user/create"),
     login: apiElement("POST", "/user/login"),
+    postResetpassword: apiElement("POST", "/user/resetpassword"),
+    postForgotpassword: apiElement("POST", "/user/forgotpassword"),
     auth: apiElement("GET", "/user/auth"),
     topic: apiElement("GET", "/topic"),
     getChallengeList: apiElement("GET", "/challenge"),
