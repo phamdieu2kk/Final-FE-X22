@@ -29,7 +29,10 @@ const SingleChoice = ({ currentQuestion, onChangeAnswer }) => {
                         <Radio.Button
                             key={answer._id}
                             value={answer._id}
-                            style={{ width: "calc(50% - 1rem)" }}
+                            style={{
+                                width: "calc(50% - 1rem)",
+                                overflow: "hidden",
+                            }}
                         >
                             {answer.value}
                         </Radio.Button>
