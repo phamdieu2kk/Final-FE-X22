@@ -1,10 +1,7 @@
 .option-multiple-choice .ant-row {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center; /* Căn giữa theo chiều ngang */
-    align-items: center; /* Căn giữa theo chiều dọc */
     width: 100%; /* Độ rộng tính cả border */
-  height: auto;
 }
 
 .option-multiple-choice .ant-col {
@@ -13,16 +10,20 @@
     margin: 10px auto; /* Thêm khoảng cách giữa các cột */
 }
 
-.answer-option {
-    width: 100%; /* Độ rộng tính cả border */
-    text-align: center;
-    border: 1px solid #080000; /* Thay đổi màu border cho phù hợp với các loại khác */
-    border-radius: 8px; /* Áp dụng border-radius để bo tròn góc */
-    height: auto;
-    padding: 10px;
 
+.answer-option {
+    width: 80%; /* Độ rộng tính cả border */
+    text-align: center;
+    border: 1px solid #000000; /* Thay đổi màu border cho phù hợp với các loại khác */
+    height: auto;;
+    padding: 20px;
+    background-color: #ffffff; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
 }
 
 .answer-option.selected {
-    background-color: #f2bc3e; 
+    background-color: #f682c9; 
 }
