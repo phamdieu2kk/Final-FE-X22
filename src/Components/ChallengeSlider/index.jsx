@@ -49,7 +49,7 @@ const ChallangeSlider = () => {
 
     return (
         <div className="slider-container" style={{ backgroundColor: "" }}>
-            <h1 style={{ textAlign: "center", fontFamily: "Playball" }} className="home-title">Thử thách nổi bật</h1>
+            <h1 style={{ textAlign: "center"}} className="home-title">Thử thách nổi bật</h1>
             <div style={{ textAlign: "right"}} >
                 <Button onClick={handlePrevPage}><CaretLeftOutlined /></Button>
                 <Button onClick={handleNextPage}><CaretRightOutlined /></Button>

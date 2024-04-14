@@ -54,35 +54,28 @@
  /* CSS tille */
  
 .title-home {
-  margin: 25px;
+  margin: 10px;
 }
 
-/* CSS Topic */
 
+/* CSS Topic */
 .topic-description {
   font-style: italic;
   font-size: 14px;
   color: #000000; /* Màu chữ xám */
 }
-
-.topic-title {
-  font-family: "Playball", cursive;
-  font-size: 18px;
-
-}
-.topic-detail h3 a{
-  font-family: 'Playball';
-}
-
 /* CSS instruction*/
-
 .title-instruction {
   font-size: 30px;
-  font-family: 'Playball';
 }
 
-.title-instruction a {
-  color: #231f20;
+li {
+  margin-bottom: 8px; 
+}
+
+.type-instruction::before {
+  content: "•"; 
+  margin-right: 8px; 
 }
 
 --------------------------------------------------------------*/

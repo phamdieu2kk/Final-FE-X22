@@ -45,7 +45,7 @@ const TopicSlider = () => {
       <h1  className="home-title"
        style={{
         textAlign: "center",
-        fontFamily: "Playball",
+       
     }}
     >
         Chủ đề nổi bật
@@ -88,19 +88,10 @@ const TopicSlider = () => {
 
                     Miêu tả sơ lượt: {topic.description}</p>
                    
-                    <Typography.Text style={{
-                        fontSize:"16px",
-                        fontFamily:"Playball",
-                        
-                    }}><Link to=
-                     {`/challenge?topicId=${topic._id}`}>
-                      {topic.topicName}
-                      </Link></Typography.Text>
-                      
-                     
-                     
-                    
-                  </div>
+                    <Typography.Text className="topic-title">
+                        <Link to={`/challenge?topicId=${topic._id}`}>{topic.topicName}</Link>
+                         </Typography.Text>
+                      </div>
                 </Card>
                             </Col>
                         ))

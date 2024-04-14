@@ -34,7 +34,7 @@ const Forgotpassword = () => {
        
     <div className="auth-page">
          <Form className="auth-form">
-            <Typography.Title style={{ textAlign: "center", fontFamily: "Playball" }}>Quên mật khẩu </Typography.Title>
+            <Typography.Title style={{ textAlign: "center"}}>Quên mật khẩu </Typography.Title>
 
             <Form.Item
                 label="Email"

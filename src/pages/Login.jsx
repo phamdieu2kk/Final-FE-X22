@@ -58,7 +58,7 @@ const Login = () =>  {
         initialValues={{ remember: true }}
       >
         <Typography.Title 
-        style={{ textAlign: "center", fontFamily: "Playball" }}>
+        style={{ textAlign: "center"}}>
           Đăng Nhập{" "}
         </Typography.Title>
 

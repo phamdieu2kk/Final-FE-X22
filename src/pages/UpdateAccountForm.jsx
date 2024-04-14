@@ -1,6 +1,6 @@
 /*eslint-disable*/
 import { useState, useEffect, useContext } from "react";
-import { Form, Input, Button, notification } from "antd";
+import { Form, Input, Button, notification,Typography } from "antd";
 import UploadImage from "../Components/UploadImage";
 import api from "../api";
 import AuthContext from "../context/AuthContext";
@@ -73,6 +73,10 @@ const UpdateAccountForm = () => {
 
     return (
         <div className="container">
+            <Typography.Title 
+        style={{ textAlign: "center"}}>
+          Cập nhật thông tin cá nhân{" "}
+        </Typography.Title>
             <Form
                 className="updateAccountForm"
                 layout="vertical"
