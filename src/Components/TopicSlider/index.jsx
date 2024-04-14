@@ -8,7 +8,7 @@ const TopicSlider = () => {
     const [topics, setTopics] = useState({ list: [], total: 0 });
     const [isLoading, setIsLoading] = useState(true);
     const [currentPage, setCurrentPage] = useState(1); // Trang hiện tại
-    const pageSize = 4; // Kích thước trang
+    const pageSize = 4; 
 
     const fetchTopics = async () => {
         try {
@@ -31,27 +31,18 @@ const TopicSlider = () => {
 
     useEffect(() => {
         fetchTopics();
-    }, [currentPage]); // Fetch dữ liệu mới khi currentPage thay đổi
+    }, [currentPage]);
 
     const handlePageChange = (page) => {
-        setIsLoading(true); // Set isLoading to true before initiating API request
+        setIsLoading(true);
         setCurrentPage(page);
     };
 
-    // useEffect(() => {
-    //     const timer = setInterval(() => {
-    //         handlePageChange(currentPage); // Chuyển slide qua trang kế tiếp
-    //     }, 5000); // 5000 milliseconds = 5 giây
-    //     return () => clearInterval(timer);
-    // }, [currentPage]); // Chạy useEffect mỗi khi currentPage thay đổi
 
     return (
-
-<>      
-<div className="slider-container" style={{
-            backgroundColor:""
-        }}>
-      <h1  className="home__title"
+        <>
+        <div className="slider-container">
+      <h1  className="home-title"
        style={{
         textAlign: "center",
         fontFamily: "Playball",

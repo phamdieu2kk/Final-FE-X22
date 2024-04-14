@@ -132,8 +132,8 @@ export default function Header() {
                         {/* ------------- id------------------- */}
                         <span style={{
                             color:"yellow",
-                            margin:"auto",
-                            padding:"auto"
+                            margin:"10px",
+                            paddingLeft:"40px"
                         }}> 
                         ID: {currentUser ? currentUser.user.name : "test"}
                         </span>

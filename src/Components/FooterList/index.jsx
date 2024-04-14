@@ -8,9 +8,9 @@ const FooterList = () => {
           <div className="container">
             <div className="row">
               <div className="col-12 col-md-12 col-lg-4 ft-info col-footer">
-                <h2 className="title-menu title-menu2">Web game</h2>
+                <h2 className="title-menu title-menu2">Tiếng Việt là dễ</h2>
                 <div className="content-ft">
-                  Hãy đến với WEB GAME và hãy trãi nghiệm  những câu đố tuyệt vời của
+                  Hãy đến với webside tiếng Việt là dễ và hãy trãi nghiệm  những câu đố tuyệt vời của
                   chúng tôi làm cho bạn thêm nhiều kiến thức mới
                 </div>
               </div>

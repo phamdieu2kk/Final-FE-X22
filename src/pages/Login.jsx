@@ -6,11 +6,13 @@ import { setAccessToken } from "../api/core";
 import { useContext } from "react";
 import AuthContext from "../context/AuthContext";
 
-export default function Login() {
+
+const Login = () =>  {
   const [loginForm] = Form.useForm();
   const [notify, notifyContextHolder] = notification.useNotification();
   const { setCurrentUser } = useContext(AuthContext);
   const navigate = useNavigate();
+
 
   const handleLoginForm = async (values) => {
     console.log("Giá trị nhập vào ", values);
@@ -34,6 +36,7 @@ export default function Login() {
         message: "Thành công",
         description: "Đăng nhập tài khoản thành công",
       });
+
       navigate("/");
     } catch (error) {
       console.dir(error);
@@ -112,3 +115,4 @@ export default function Login() {
    
   );
 }
+export default Login
