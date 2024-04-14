@@ -1,29 +1,27 @@
-.option-multiple-choice .ant-row {
+
+
+.option-multiple-choice {
     display: flex;
     flex-wrap: wrap;
-    width: 100%; /* Độ rộng tính cả border */
+    justify-content: center;
 }
 
-.option-multiple-choice .ant-col {
-    display: flex;
-    justify-content: center; /* Căn giữa theo chiều ngang */
-    margin: 10px auto; /* Thêm khoảng cách giữa các cột */
-}
 
 
 .answer-option {
-    width: 80%; /* Độ rộng tính cả border */
+    width: 100%; /* Độ rộng tính cả border */
     text-align: center;
     border: 1px solid #000000; /* Thay đổi màu border cho phù hợp với các loại khác */
-    height: auto;;
     padding: 20px;
     background-color: #ffffff; 
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100%;
+    
 }
 
 .answer-option.selected {
     background-color: #f682c9; 
+    
 }

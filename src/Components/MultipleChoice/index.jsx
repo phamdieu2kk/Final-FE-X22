@@ -50,7 +50,13 @@ const MultipleChoice = ({ currentQuestion, onChangeAnswer }) => {
                             >
                                 <Checkbox
                                     value={answer._id}
-                                    style={{ width: "100%" }}
+                                    style={{
+                                        width: "100%",
+                                        display: "flex",
+                                        justifyContent: "center",
+                                        alignItems: "center",
+                                        height: "100%", 
+                                    }}
                                 >
                                     {answer.value}
                                 </Checkbox>

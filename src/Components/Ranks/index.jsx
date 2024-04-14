@@ -49,7 +49,7 @@ const Ranks = () => {
         className="home-title"
         style={{
           textAlign: "center",
-          fontFamily: "Playball",
+          
         }}
       >
         Bảng xếp hạng

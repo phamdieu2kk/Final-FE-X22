@@ -44,7 +44,7 @@ export default function Register() {
                         className="auth-form"
                         layout="vertical"
                     >
-                        <Typography.Title style={{ textAlign: "center", fontFamily: "Playball" }}>Đăng Kí Tài Khoản</Typography.Title>
+                        <Typography.Title style={{ textAlign: "center"}}>Đăng Kí Tài Khoản</Typography.Title>
 
                         <Form.Item
                 label="Họ và tên"

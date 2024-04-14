@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import SingleChoice from "../SingleChoice";
 import MultipleChoice from "../MultipleChoice";
-import { Button, Flex, Result, Modal } from "antd";
+import { Button, Flex, Result, Modal, Progress } from "antd";
 import "./style.css";
 import ArrangeQuestions from "../ArrangeQuestions";
 import api from "../../api";
@@ -132,25 +132,33 @@ const Questions = () => {
         setScore(response.data.point);
         setCorrectAnswer(response.data.correctAnswer);
     };
-
+    const progressPercent = ((currentIndex + 1) / questions.length) * 100;
     return (
         <div className="container">
             <div className="questions-container">
                 {questions.length > 0 && currentIndex < questions.length && (
                     <div className="question-card">
                         <Flex justify="space-between" align="center">
-                            <h5>
-                                Số câu hỏi: {currentIndex + 1}/
-                                {questions.length} 
-                            </h5>
-                            <h5>Loại:{" "}
-                                {questions[currentIndex].type} </h5>
-                            <h5>
+                        <Progress className="custom-progress" percent={progressPercent} status="active" strokeColor="red" strokeWidth={12} />
+                        {/* <h5> Số câu hỏi: 
+                            {currentIndex + 1}/{questions.length}</h5> */}
+                            <h4 className="custom-progress">Loại:{" "}
+                                {questions[currentIndex].type} </h4>
+                            
+                                <Progress  className="time-progress" 
+                                type="circle" 
+                                strokeColor=""
+                                percent={(timeLeft / 180) * 100}
+                                status="active" size={50}
+                                format={() => `${Math.floor(timeLeft / 60)}:${(timeLeft % 60 < 10 ? '0' : '') + (timeLeft % 60)}`}
+                                />
+
+                            {/* <h4>
                                 Thời gian: {Math.floor(timeLeft / 60)}:
                                 {timeLeft % 60 < 10
                                     ? `0${timeLeft % 60}`
                                     : timeLeft % 60}
-                            </h5>
+                            </h4> */}
                         </Flex>
                         <div className="question-header">
                             <h2 className="question">
