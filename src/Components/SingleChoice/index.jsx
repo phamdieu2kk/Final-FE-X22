@@ -20,7 +20,6 @@ const SingleChoice = ({ currentQuestion, onChangeAnswer }) => {
                     className=""
                     style={{
                         display: "flex",
-                        justifyContent: "space-between",
                         flexWrap: "wrap",
                         gap: "2rem",
                     }}

@@ -1,3 +1,4 @@
+/*eslint-disable*/
 import { useState } from "react";
 import { Checkbox, Row, Col } from "antd";
 import "./style.css";
@@ -29,7 +30,10 @@ const MultipleChoice = ({ currentQuestion, onChangeAnswer }) => {
     return (
         <div className="option-multiple-choice">
             <Checkbox.Group
-                style={{ width: "100%" }}
+                style={{
+                    width: "calc(50% - 1rem)",
+                    overflow: "hidden",
+                }}
                 value={selectedAnswers}
                 onChange={handleChangeAnswer}
             >

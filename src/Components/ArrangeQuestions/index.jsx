@@ -71,7 +71,6 @@ const ArrangeQuestions = ({ currentQuestion, onChangeAnswer }) => {
     onChangeAnswer({
         questionId: currentQuestion._id,
         answers: userAnswer,
-        // answers: answerId,
         type: currentQuestion.type,
     });
   }

@@ -4,13 +4,13 @@
   align-items: center;
   min-height: 80vh;
   margin-top: 30px;
-  
+  height: auto;
 }
 
 .question-card {
   width: 100%; /* Định dạng chiều rộng của khung chứa nội dung */
   padding: 60px;
-  background-color: #39ff3f;
+  background-color: #4CCD99;
   
 }
 
@@ -21,7 +21,7 @@
   padding: 20px;
   border: 1px solid #040404;
   align-items: center;
-  background-color: rgb(255,255,0);
+  background-color: #FFC700;
   
 }
 .question {
