@@ -1,4 +1,3 @@
-/*eslint-disable*/
 import { useEffect, useState } from "react";
 import SingleChoice from "../SingleChoice";
 import MultipleChoice from "../MultipleChoice";
@@ -6,7 +5,7 @@ import { Button, Flex, Result, Modal, Progress } from "antd";
 import "./style.css";
 import ArrangeQuestions from "../ArrangeQuestions";
 import api from "../../api";
-import { useSearchParams } from "react-router-dom";
+import { useSearchParams , Link} from "react-router-dom";
 
 const QUESTION_TYPE = {
     SINGLE_CHOICE: "single-choice",
@@ -26,6 +25,7 @@ const Questions = () => {
     const [isTimerRunning, setIsTimerRunning] = useState(true); // State để kiểm soát việc chạy thời gian
     const [correctAnswer, setCorrectAnswer] = useState(0);
     const [searchParams, setSearchParams] = useSearchParams();
+    const [showPlayAgain, setShowPlayAgain] = useState(false); // State để kiểm soát hiển thị nút "Chơi lại"
 
     useEffect(() => {
         (async () => {
@@ -123,6 +123,7 @@ const Questions = () => {
             data: {
                 challengeId: searchParams.get("challengeId"),
                 answerList,
+
             },
         });
 
@@ -131,34 +132,28 @@ const Questions = () => {
         setIsTimerRunning(false); // Dừng thời gian
         setScore(response.data.point);
         setCorrectAnswer(response.data.correctAnswer);
+        setShowPlayAgain(true); // Hiển thị nút "Chơi lại"
     };
+
     const progressPercent = ((currentIndex + 1) / questions.length) * 100;
+
     return (
         <div className="container">
             <div className="questions-container">
                 {questions.length > 0 && currentIndex < questions.length && (
                     <div className="question-card">
                         <Flex justify="space-between" align="center">
-                        <Progress className="custom-progress" percent={progressPercent} status="active" strokeColor="red" strokeWidth={12} />
-                        {/* <h5> Số câu hỏi: 
-                            {currentIndex + 1}/{questions.length}</h5> */}
+                            <Progress className="custom-progress" percent={progressPercent} status="active" strokeColor="red" strokeWidth={12} />
                             <h4 className="custom-progress">Loại:{" "}
                                 {questions[currentIndex].type} </h4>
-                            
-                                <Progress  className="time-progress" 
+                            <Progress  className="time-progress" 
                                 type="circle" 
+                                strokeWidth={6}
                                 strokeColor=""
                                 percent={(timeLeft / 180) * 100}
                                 status="active" size={50}
                                 format={() => `${Math.floor(timeLeft / 60)}:${(timeLeft % 60 < 10 ? '0' : '') + (timeLeft % 60)}`}
-                                />
-
-                            {/* <h4>
-                                Thời gian: {Math.floor(timeLeft / 60)}:
-                                {timeLeft % 60 < 10
-                                    ? `0${timeLeft % 60}`
-                                    : timeLeft % 60}
-                            </h4> */}
+                            />
                         </Flex>
                         <div className="question-header">
                             <h2 className="question">
@@ -211,7 +206,14 @@ const Questions = () => {
                                     Nộp bài
                                 </Button>
                             )}
+                             {/* Hiển thị nút "Chơi lại" khi hoàn thành */}
+                        {showPlayAgain && (
+                                <Link to="/topic" className="restart-button">
+                                    <Button>Chơi lại</Button>
+                                </Link>
+                                 )}
                         </div>
+                       
                     </div>
                 )}
                 <div className="result-container">
@@ -220,12 +222,13 @@ const Questions = () => {
                             status="success"
                             title="Hoàn thành thử thách!"
                             subTitle={`
-                        Tổng số câu hỏi: ${questions.length}\n,
-                        Tổng số điểm: ${score}\n,
+                        Tổng số câu hỏi: ${questions.length}
+                        Tổng số điểm: ${score}
                         Bạn đã làm đúng: ${correctAnswer}/${answerList.length} câu `}
                         />
                     )}
                 </div>
+
                 <Modal
                     title="Xác nhận nộp bài"
                     open={confirmSubmit}

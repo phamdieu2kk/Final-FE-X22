@@ -8,7 +8,7 @@ const Challenges = () => {
   const [challenges, setChallenges] = useState([]);
   const [selectedChallenge, setSelectedChallenge] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
-  const pageSize = 10;
+  const pageSize = 8;
   const [searchParams, setSearchParams] = useSearchParams()
 
   useEffect(() => {
