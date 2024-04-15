@@ -23,6 +23,7 @@ const ResetPassword = () => {
                 message: 'Thành công',
                 description: 'Đặt lại mật khẩu thành công',
             });
+           
             navigate("/login");
         } catch (error) {
             console.error("Lỗi khi đặt lại mật khẩu:", error);

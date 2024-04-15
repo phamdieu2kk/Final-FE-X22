@@ -11,7 +11,6 @@ import Forgotpassword from "../Components/Forgotpassword";
 import Account from "../pages/Account";
 import UpdateAccountForm from "../pages/UpdateAccountForm";
 import ResetPassword from "../Components/ResetPassword";
-import Result from "../pages/Result";
 export default function AppRouter() {
   return (
     <Routes>
@@ -27,7 +26,6 @@ export default function AppRouter() {
       <Route path="/updateaccountform" element={<UpdateAccountForm />} />
       <Route path="/questions" element={<Questions />} />
       <Route path="challenge" element={<Challenges/>}/>
-      <Route path="result" element={<Result/>}/>
     </Routes>
   );
 }

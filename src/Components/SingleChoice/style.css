@@ -19,12 +19,9 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 80px;
+  height: auto;
   border: 1px solid #080000;
-  font-weight: initial;
-  color:black
 }
 .option-single-choice .ant-radio-button {
-  background-color: #e710b8; 
-  
+  background-color: #ed62cf; 
 }

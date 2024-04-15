@@ -16,6 +16,9 @@ const Forgotpassword = () => {
 
             const data = response.data;
             notification.success({ message: data?.message });
+           // Ẩn thông báo thành công sau 2 giây
+
+      
             navigate("/reset-password");
         } catch (error) {
             const errorMessage = error.response?.data?.message ?? error.response?.data;

@@ -7,9 +7,9 @@ const Home = () => {
   return (
     <div className="container">
       <section className="section-homepage">
-        <Row justify="center">
-          <Col span={16}>
-            <div style={{ overflow: "hidden" }}> 
+        <Row justify="center" align="top">
+        <Col span={16} style={{ paddingRight: "10px" }}>
+            <div style={{ overflow: "hidden" }}>
               {/* Sử dụng overflow: hidden ở đây */}
               <ChallangeSlider/>
             </div>

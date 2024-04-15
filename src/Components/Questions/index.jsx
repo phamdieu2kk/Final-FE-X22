@@ -1,3 +1,4 @@
+/*eslint-disable*/
 import { useEffect, useState } from "react";
 import SingleChoice from "../SingleChoice";
 import MultipleChoice from "../MultipleChoice";
@@ -26,7 +27,7 @@ const Questions = () => {
     const [correctAnswer, setCorrectAnswer] = useState(0);
     const [searchParams, setSearchParams] = useSearchParams();
     const [showPlayAgain, setShowPlayAgain] = useState(false); // State để kiểm soát hiển thị nút "Chơi lại"
-
+    const [submitted, setSubmitted] = useState(false);
     useEffect(() => {
         (async () => {
             try {
@@ -132,9 +133,20 @@ const Questions = () => {
         setCorrectAnswer(response.data.correctAnswer);
         setShowPlayAgain(true); // Hiển thị nút "Chơi lại"
         setShowResult(true); // Hiển thị kết quả khi bấm nút "Nộp bài"
+        setSubmitted(true); // Đã nộp bài
     };
 
-    const progressPercent = ((currentIndex + 1) / questions.length) * 100;
+    const progressPercent =
+    currentIndex === questions.length - 1 && questions.length % 2 !== 0
+        ? Math.floor(((currentIndex + 1) / questions.length) * 100)
+        : Math.floor(((currentIndex + 1) / questions.length) * 100);
+
+        const TYPE_QUESTION = {
+            "single-choice": "lựa chọn đơn",
+            "multi-choice": "Nhiều lựa chọn",
+            "arrange": "Sắp xếp"
+        };
+
 
     return (
         <div className="container">
@@ -149,7 +161,7 @@ const Questions = () => {
                                 strokeColor="red"
                                 strokeWidth={12}
                             />
-                            <h4 className="custom-progress">Loại: {questions[currentIndex].type} </h4>
+                            <h4 className="custom-progress">Loại: {TYPE_QUESTION[questions[currentIndex].type]} </h4>
                             <Progress
                                 className="time-progress"
                                 type="circle"
@@ -208,6 +220,7 @@ const Questions = () => {
                                     <Button
                                         type="primary"
                                         onClick={handleSubmitButtonClick}
+                                        disabled={submitted}
                                     >
                                         Nộp bài
                                     </Button>
@@ -216,58 +229,47 @@ const Questions = () => {
                                 <Link to="/topic" className="restart-button">
                                     <Button>Chơi lại</Button>
                                 </Link>
-                                 )}
+                                )}
                         </div>
                     </div>
                 )}
                 {/* Hiển thị thông báo kết quả */}
                 <Modal
-    title="Kết quả thử thách"
-    visible={showResult}
-    onCancel={() => setShowResult(false)}
-    footer={[
-        <Button key="ok" onClick={() => setShowResult(false)}>
-            OK
-        </Button>,
-    ]}
->
-<Result
-    status="success"
-    title="Hoàn thành thử thách!"
-    subTitle={
-        <>
-            <span style={{ fontSize: "16px" }}>
-                Tổng số câu hỏi: {questions.length}
-                <br />
-                Tổng số điểm: {score}
-                <br />
-                Bạn đã làm đúng: {correctAnswer}/{answerList.length} câu
-            </span>
-        </>
-    }
-/>
-</Modal>
-
-                <Modal
-                    title="Xác nhận nộp bài"
-                    visible={confirmSubmit}
-                    onOk={handleConfirmSubmit}
-                    onCancel={() => setConfirmSubmit(false)}
-                >
-                    <p>Bạn có chắc chắn muốn nộp bài không?</p>
-                </Modal>
-
-                {/* Hiển thị nút "Chơi lại" khi hoàn thành */}
-                {/* {showPlayAgain && (
-                    <div className="button-container">
-                        <Link to="/topic" className="restart-button">
-                            <Button>Chơi lại</Button>
-                        </Link>
-                    </div>
-                )} */}
-            </div>
-        </div>
-    );
-};
-
-export default Questions;
+                title="Kết quả thử thách"
+                visible={showResult}
+                onCancel={() => setShowResult(false)}
+                footer={[
+                    <Button key="ok" onClick={() => setShowResult(false)}>
+                            OK
+                        </Button>,
+                        ]}
+                        >
+                            <Result
+                            status="success"
+                            title="Hoàn thành thử thách!"
+                            subTitle={
+                                <>
+                                <span style={{ fontSize: "16px" }}>
+                                    Tổng số câu hỏi: {questions.length}
+                                    <br />
+                                    Bạn đã làm đúng: {correctAnswer}/{answerList.length} câu
+                                    <br />
+                                    Tổng số điểm: {Math.floor(score)} điểm
+                                    </span>
+                                    </>
+                                    }
+                                    />
+                                    </Modal>
+                                    <Modal
+                                    title="Xác nhận nộp bài"
+                                    visible={confirmSubmit}
+                                    onOk={handleConfirmSubmit}
+                                    onCancel={() => setConfirmSubmit(false)}
+                                    >
+                                        <p>Bạn có chắc chắn muốn nộp bài không?</p>
+                                        </Modal>
+                                        </div>
+                                        </div>
+                                        );
+                                    };
+                                    export default Questions;
