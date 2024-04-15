@@ -5,7 +5,7 @@ import { Button, Flex, Result, Modal, Progress } from "antd";
 import "./style.css";
 import ArrangeQuestions from "../ArrangeQuestions";
 import api from "../../api";
-import { useSearchParams , Link} from "react-router-dom";
+import { useSearchParams, Link } from "react-router-dom";
 
 const QUESTION_TYPE = {
     SINGLE_CHOICE: "single-choice",
@@ -123,16 +123,15 @@ const Questions = () => {
             data: {
                 challengeId: searchParams.get("challengeId"),
                 answerList,
-
             },
         });
 
-        setShowResult(true); // Hiển thị kết quả khi bấm nút "Nộp bài"
         setConfirmSubmit(false); // Đặt lại state của xác nhận
         setIsTimerRunning(false); // Dừng thời gian
         setScore(response.data.point);
         setCorrectAnswer(response.data.correctAnswer);
         setShowPlayAgain(true); // Hiển thị nút "Chơi lại"
+        setShowResult(true); // Hiển thị kết quả khi bấm nút "Nộp bài"
     };
 
     const progressPercent = ((currentIndex + 1) / questions.length) * 100;
@@ -143,45 +142,52 @@ const Questions = () => {
                 {questions.length > 0 && currentIndex < questions.length && (
                     <div className="question-card">
                         <Flex justify="space-between" align="center">
-                            <Progress className="custom-progress" percent={progressPercent} status="active" strokeColor="red" strokeWidth={12} />
-                            <h4 className="custom-progress">Loại:{" "}
-                                {questions[currentIndex].type} </h4>
-                            <Progress  className="time-progress" 
-                                type="circle" 
+                            <Progress
+                                className="custom-progress"
+                                percent={progressPercent}
+                                status="active"
+                                strokeColor="red"
+                                strokeWidth={12}
+                            />
+                            <h4 className="custom-progress">Loại: {questions[currentIndex].type} </h4>
+                            <Progress
+                                className="time-progress"
+                                type="circle"
                                 strokeWidth={6}
                                 strokeColor=""
                                 percent={(timeLeft / 180) * 100}
-                                status="active" size={50}
+                                status="active"
+                                size={50}
                                 format={() => `${Math.floor(timeLeft / 60)}:${(timeLeft % 60 < 10 ? '0' : '') + (timeLeft % 60)}`}
                             />
                         </Flex>
                         <div className="question-header">
                             <h2 className="question">
-                               Câu hỏi: {questions[currentIndex].question}
+                                Câu hỏi: {questions[currentIndex].question}
                             </h2>
                         </div>
                         <div className="question-content">
                             {questions[currentIndex].type ===
                                 QUESTION_TYPE.SINGLE_CHOICE && (
-                                <SingleChoice
-                                    currentQuestion={questions[currentIndex]}
-                                    onChangeAnswer={changeAnswer}
-                                />
-                            )}
+                                    <SingleChoice
+                                        currentQuestion={questions[currentIndex]}
+                                        onChangeAnswer={changeAnswer}
+                                    />
+                                )}
                             {questions[currentIndex].type ===
                                 QUESTION_TYPE.MULTI_CHOICE && (
-                                <MultipleChoice
-                                    currentQuestion={questions[currentIndex]}
-                                    onChangeAnswer={changeAnswer}
-                                />
-                            )}
+                                    <MultipleChoice
+                                        currentQuestion={questions[currentIndex]}
+                                        onChangeAnswer={changeAnswer}
+                                    />
+                                )}
                             {questions[currentIndex].type ===
                                 QUESTION_TYPE.ARRANGE_CHOICE && (
-                                <ArrangeQuestions
-                                    currentQuestion={questions[currentIndex]}
-                                    onChangeAnswer={changeAnswer}
-                                />
-                            )}
+                                    <ArrangeQuestions
+                                        currentQuestion={questions[currentIndex]}
+                                        onChangeAnswer={changeAnswer}
+                                    />
+                                )}
                         </div>
                         <div className="button-container">
                             {currentIndex !== questions.length - 1 ? (
@@ -199,44 +205,66 @@ const Questions = () => {
                                     Câu tiếp theo
                                 </Button>
                             ) : (
-                                <Button
-                                    type="primary"
-                                    onClick={handleSubmitButtonClick}
-                                >
-                                    Nộp bài
-                                </Button>
-                            )}
-                             {/* Hiển thị nút "Chơi lại" khi hoàn thành */}
-                        {showPlayAgain && (
+                                    <Button
+                                        type="primary"
+                                        onClick={handleSubmitButtonClick}
+                                    >
+                                        Nộp bài
+                                    </Button>
+                                )}
+                                {showPlayAgain && (
                                 <Link to="/topic" className="restart-button">
                                     <Button>Chơi lại</Button>
                                 </Link>
                                  )}
                         </div>
-                       
                     </div>
                 )}
-                <div className="result-container">
-                    {showResult && (
-                        <Result
-                            status="success"
-                            title="Hoàn thành thử thách!"
-                            subTitle={`
-                        Tổng số câu hỏi: ${questions.length}
-                        Tổng số điểm: ${score}
-                        Bạn đã làm đúng: ${correctAnswer}/${answerList.length} câu `}
-                        />
-                    )}
-                </div>
+                {/* Hiển thị thông báo kết quả */}
+                <Modal
+    title="Kết quả thử thách"
+    visible={showResult}
+    onCancel={() => setShowResult(false)}
+    footer={[
+        <Button key="ok" onClick={() => setShowResult(false)}>
+            OK
+        </Button>,
+    ]}
+>
+<Result
+    status="success"
+    title="Hoàn thành thử thách!"
+    subTitle={
+        <>
+            <span style={{ fontSize: "16px" }}>
+                Tổng số câu hỏi: {questions.length}
+                <br />
+                Tổng số điểm: {score}
+                <br />
+                Bạn đã làm đúng: {correctAnswer}/{answerList.length} câu
+            </span>
+        </>
+    }
+/>
+</Modal>
 
                 <Modal
                     title="Xác nhận nộp bài"
-                    open={confirmSubmit}
+                    visible={confirmSubmit}
                     onOk={handleConfirmSubmit}
                     onCancel={() => setConfirmSubmit(false)}
                 >
                     <p>Bạn có chắc chắn muốn nộp bài không?</p>
                 </Modal>
+
+                {/* Hiển thị nút "Chơi lại" khi hoàn thành */}
+                {/* {showPlayAgain && (
+                    <div className="button-container">
+                        <Link to="/topic" className="restart-button">
+                            <Button>Chơi lại</Button>
+                        </Link>
+                    </div>
+                )} */}
             </div>
         </div>
     );

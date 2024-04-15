@@ -1,4 +1,3 @@
-/* eslint-disable */
 import { Link, useNavigate } from "react-router-dom";
 import { Button, Form, Input, Typography, notification } from "antd";
 import api from "../api";
@@ -6,17 +5,12 @@ import { setAccessToken } from "../api/core";
 import { useContext } from "react";
 import AuthContext from "../context/AuthContext";
 
-
-const Login = () =>  {
+const Login = () => {
   const [loginForm] = Form.useForm();
-  const [notify, notifyContextHolder] = notification.useNotification();
   const { setCurrentUser } = useContext(AuthContext);
   const navigate = useNavigate();
 
-
   const handleLoginForm = async (values) => {
-    console.log("Giá trị nhập vào ", values);
-
     const dto = {
       username: values.username,
       password: values.password.trim(),
@@ -24,15 +18,12 @@ const Login = () =>  {
 
     try {
       const response = await api.login.invoke({ data: dto });
-      console.log(response);
       setAccessToken(`Bearer ${response.data.token}`);
 
       const profileResponse = await api.auth.invoke({});
-      // console.log(profileResponse);
+      setCurrentUser(profileResponse.data);
 
-      setCurrentUser(profileResponse.data)
-
-      notify.success({
+      notification.success({
         message: "Thành công",
         description: "Đăng nhập tài khoản thành công",
       });
@@ -40,16 +31,15 @@ const Login = () =>  {
       navigate("/");
     } catch (error) {
       console.dir(error);
-      notify.error({
+      notification.error({
         message: "Thất bại",
         description: "Đăng nhập tài khoản thất bại",
       });
     }
   };
-  return ( 
-   
+
+  return (
     <div className="auth-page">
-      {notifyContextHolder}
       <Form
         form={loginForm}
         onFinish={handleLoginForm}
@@ -57,9 +47,8 @@ const Login = () =>  {
         layout="vertical"
         initialValues={{ remember: true }}
       >
-        <Typography.Title 
-        style={{ textAlign: "center"}}>
-          Đăng Nhập{" "}
+        <Typography.Title style={{ textAlign: "center" }}>
+          Đăng Nhập
         </Typography.Title>
 
         <Form.Item
@@ -103,16 +92,17 @@ const Login = () =>  {
         </Form.Item>
         <Form.Item>
           <Button type="primary" htmlType="submit" className="auth-button">
-            Đăng nhập{""}
+            Đăng nhập
           </Button>
           <div className="member">
-            Bạn chưa có tài khoản <Link to="/register"> Đăng ký </Link>
+            Bạn chưa có tài khoản{" "}
+            <Link to="/register"> Đăng ký </Link>
             tại đây ?
           </div>
         </Form.Item>
       </Form>
     </div>
-   
   );
-}
-export default Login
+};
+
+export default Login;

@@ -15,6 +15,7 @@ const ChallangeSlider = () => {
 
     const fetchChallenges = async () => {
         try {
+            // const response = await api.getFeaturedCChallenges.invoke({})
             const response = await api.getChallengeList.invoke({
                 queries: {
                     page: currentPage,
