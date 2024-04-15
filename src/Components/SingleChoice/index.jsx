@@ -31,6 +31,8 @@ const SingleChoice = ({ currentQuestion, onChangeAnswer }) => {
                             style={{
                                 width: "calc(50% - 1rem)",
                                 overflow: "hidden",
+                                fontWeight:"initial",
+                                color:"black",
                             }}
                         >
                             {answer.value}

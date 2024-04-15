@@ -1,31 +1,28 @@
-import React, { useState, useEffect } from "react";
-import { Table, Spin } from "antd";
+import { useState, useEffect } from "react";
+import { Table, Spin, Alert } from "antd";
 import api from "../../api";
 import "./style.css";
 
 const Ranks = () => {
   const [rankList, setRankList] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await api.getRankList.invoke({});
         setRankList(response.data.rankList);
-        setLoading(false); 
+        setLoading(false);
       } catch (error) {
         console.error("Lỗi khi tìm bảng xếp hạng:", error);
-        setIsLoading(false);
+        setError("Đã xảy ra lỗi khi tải dữ liệu. Vui lòng thử lại sau.");
+        setLoading(false);
       }
     };
 
     fetchData();
   }, []);
-
-  useEffect(() => {
-    setIsLoading(loading); 
-  }, [loading]);
 
   const columns = [
     {
@@ -38,7 +35,7 @@ const Ranks = () => {
       title: "Tên",
       dataIndex: "name",
       key: "name",
-      className: "name-column", 
+      className: "name-column",
     },
     {
       title: "Điểm số",
@@ -49,18 +46,17 @@ const Ranks = () => {
   ];
 
   return (
-    <div className="ranks-container" style={{ paddingLeft: "20px" }}>
-      <h1
-        className="home-title"
-        style={{
-          textAlign: "center",
-        }}
-      >
+    <div className="ranks-container">
+      <h1 className="home-title" style={{ textAlign: "center" }}>
         Bảng xếp hạng
       </h1>
       <div className="table-wrapper">
-        {isLoading ? (
+        {error ? (
+          <Alert message={error} type="error" showIcon />
+        ) : loading ? (
           <Spin size="large" />
+        ) : rankList.length === 0 ? (
+          <p>Không có dữ liệu để hiển thị.</p>
         ) : (
           <Table
             dataSource={rankList}

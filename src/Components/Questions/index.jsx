@@ -27,7 +27,7 @@ const Questions = () => {
     const [correctAnswer, setCorrectAnswer] = useState(0);
     const [searchParams, setSearchParams] = useSearchParams();
     const [showPlayAgain, setShowPlayAgain] = useState(false); // State để kiểm soát hiển thị nút "Chơi lại"
-
+    const [submitted, setSubmitted] = useState(false);
     useEffect(() => {
         (async () => {
             try {
@@ -133,6 +133,7 @@ const Questions = () => {
         setCorrectAnswer(response.data.correctAnswer);
         setShowPlayAgain(true); // Hiển thị nút "Chơi lại"
         setShowResult(true); // Hiển thị kết quả khi bấm nút "Nộp bài"
+        setSubmitted(true); // Đã nộp bài
     };
 
     const progressPercent =
@@ -219,6 +220,7 @@ const Questions = () => {
                                     <Button
                                         type="primary"
                                         onClick={handleSubmitButtonClick}
+                                        disabled={submitted}
                                     >
                                         Nộp bài
                                     </Button>

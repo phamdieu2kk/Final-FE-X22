@@ -53,7 +53,7 @@ const TopicSlider = () => {
             <section className="topic-list">
                 <Row gutter={[16, 16]}>
                     {isLoading ? (
-                        <p>Loading...</p>
+                        <p>Không có dữ liệu để hiển thị.</p>
                     ) : (
                         topics.list.map((topic) => (
                             <Col
