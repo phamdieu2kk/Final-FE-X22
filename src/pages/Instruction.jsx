@@ -32,7 +32,7 @@ const Instruction = () => {
     {
       key: "3",
       type: "Sắp xếp",
-      description: "Sẽ hiện ra câu hỏi và bạn cần sắp xếp các lựa chọn theo thứ tự đúng. Mỗi câu trả lời đúng sẽ được tính điểm, nhưng nếu bạn chọn sai, bạn sẽ mất điểm. Bạn sẽ nhận được điểm số cao nhất nếu bạn trả lời đúng tất cả các câu hỏi. Hãy chuẩn bị sẵn sàng và bắt đầu chơi!",
+      description: "Sẽ hiện ra câu hỏi và bạn cần sắp xếp các lựa chọn theo thứ tự đúng. Mỗi câu trả lời đúng sẽ được tính điểm, nhưng nếu bạn sắp xếp sai các thứ tự , bạn sẽ mất điểm. Bạn sẽ nhận được điểm số cao nhất nếu bạn trả lời đúng tất cả các câu hỏi. Hãy chuẩn bị sẵn sàng và bắt đầu chơi!",
     },
   ];
 
@@ -68,15 +68,7 @@ const Instruction = () => {
               <p>
                 - Thời gian: 3 phút cho mỗi một thử thách
               </p>
-              <p> - Điểm sẽ có 3 mức độ để tính:</p>
-              <ul style={{
-  listStyleType: "none",
-  padding: 0,
-}}>
-  <li className="type-instruction">Dễ: 100 điểm</li>
-  <li  className="type-instruction">Vừa: 100 điểm</li>
-  <li  className="type-instruction">Khó: 300 điểm</li>
-</ul>
+             
               <Table
                 columns={columns}
                 dataSource={data}
@@ -85,7 +77,16 @@ const Instruction = () => {
                 style={{ border: "1px solid #ddd", marginBottom: "16px" }}
                
               />
-             
+              <p> - Điểm sẽ có 3 mức độ để tính:</p>
+              <ul className="column-list" style={{
+                columnCount:"3",
+                listStyleType: "none",
+                padding: 0,
+              }}>
+  <li className="type-instruction">Dễ: 100 điểm</li>
+  <li className="type-instruction">Vừa: 100 điểm</li>
+  <li className="type-instruction">Khó: 300 điểm</li>
+</ul>
             </Col>
           </Row>
         </div>
