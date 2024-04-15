@@ -2,11 +2,12 @@
 import { useEffect, useState } from "react";
 import SingleChoice from "../SingleChoice";
 import MultipleChoice from "../MultipleChoice";
-import { Button, Flex, Result, Modal, Progress } from "antd";
+import { Button, Flex, Result, Modal, Progress, Typography } from "antd";
 import "./style.css";
 import ArrangeQuestions from "../ArrangeQuestions/indexx";
 import api from "../../api";
 import { useSearchParams, Link } from "react-router-dom";
+import { set } from "lodash";
 
 const QUESTION_TYPE = {
   SINGLE_CHOICE: "single-choice",
@@ -28,6 +29,7 @@ const Questions = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [showPlayAgain, setShowPlayAgain] = useState(false); // State để kiểm soát hiển thị nút "Chơi lại"
   const [submitted, setSubmitted] = useState(false);
+  const [challenge, setChallenge] = useState(null);
   useEffect(() => {
     (async () => {
       try {
@@ -37,6 +39,7 @@ const Questions = () => {
             challengeId: challengeId,
           },
         });
+        setChallenge(res.data.questionList[0].challengeId);
         setQuestions(res.data.questionList); // Assuming res.data contains the questions
         console.log(res.data);
       } catch (error) {
@@ -75,7 +78,7 @@ const Questions = () => {
     const newAnswerList = answerList.filter(
       (answer) => answer.questionId !== data.questionId
     );
-
+    console.log(data);
     switch (data.type) {
       case QUESTION_TYPE.SINGLE_CHOICE:
         newAnswerList.push(data);
@@ -87,9 +90,10 @@ const Questions = () => {
         break;
 
       case QUESTION_TYPE.ARRANGE_CHOICE:
-        newAnswerList.push(data);
+        const formattedAnswers = data.answers.map((answer) => answer._id);
+        console.log(data);
+        newAnswerList.push({ ...data, answers: formattedAnswers });
         break;
-
       default:
         break;
     }
@@ -152,22 +156,29 @@ const Questions = () => {
       <div className="questions-container">
         {questions.length > 0 && currentIndex < questions.length && (
           <div className="question-card">
+            <Typography.Title
+              level={2}
+              style={{
+                textAlign: "center",
+                color: "#f5d612",
+              }}
+            >
+              Thử thách: {challenge.challengeName}
+            </Typography.Title>
             <Flex justify="space-between" align="center">
               <Progress
                 className="custom-progress"
                 percent={progressPercent}
                 status="active"
-                strokeColor="red"
+                strokeColor="#13aa7b"
                 strokeWidth={12}
               />
-              <h4 className="custom-progress">
-                Loại: {TYPE_QUESTION[questions[currentIndex].type]}{" "}
-              </h4>
+              {/* <h4 className="custom-progress">Loại: {TYPE_QUESTION[questions[currentIndex].type]} </h4> */}
               <Progress
                 className="time-progress"
                 type="circle"
                 strokeWidth={6}
-                strokeColor=""
+                strokeColor="#13aa7b"
                 percent={(timeLeft / 180) * 100}
                 status="active"
                 size={50}
@@ -179,9 +190,19 @@ const Questions = () => {
               />
             </Flex>
             <div className="question-header">
-              <h2 className="question">
+              <h4 className="question">
                 Câu hỏi: {questions[currentIndex].question}
-              </h2>
+              </h4>
+              {TYPE_QUESTION[questions[currentIndex].type] ==
+                "Nhiều lựa chọn" && (
+                <p
+                  style={{
+                    color: "red",
+                  }}
+                >
+                  ** Câu hỏi có nhiều đáp án đúng
+                </p>
+              )}
             </div>
             <div className="question-content">
               {questions[currentIndex].type === QUESTION_TYPE.SINGLE_CHOICE && (
@@ -207,6 +228,7 @@ const Questions = () => {
             <div className="button-container">
               {currentIndex !== questions.length - 1 ? (
                 <Button
+                  style={{ backgroundColor: "#f5d612" }}
                   type="primary"
                   onClick={handleNextButtonClick}
                   disabled={
@@ -221,6 +243,7 @@ const Questions = () => {
               ) : (
                 <Button
                   type="primary"
+                  style={{ backgroundColor: "#f5d612" }}
                   onClick={handleSubmitButtonClick}
                   disabled={submitted}
                 >

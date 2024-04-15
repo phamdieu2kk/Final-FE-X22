@@ -74,33 +74,34 @@ const ArrangeQuestions = ({ currentQuestion, onChangeAnswer }) => {
 
   return (
     <div className="option-arrange">
-      <h5 style={{ fontWeight: "bold" }}>
-        Sắp xếp các thứ tự trong câu sau thành câu hoàn chỉnh
-      </h5>
-
-      <div className="answer-list answer-list-1">
-        {answerList1.map((answer) => (
-          <div
-            key={answer._id}
-            className="answer-item"
-            onClick={() => swapElement(answer._id, "answer-list-1")}
-          >
-            {answer.value}
-          </div>
-        ))}
-      </div>
+      {answerList1.length > 0 && (
+        <div className="answer-list answer-list-1">
+          {answerList1.map((answer) => (
+            <div
+              key={answer._id}
+              className="answer-item"
+              onClick={() => swapElement(answer._id, "answer-list-1")}
+            >
+              {answer.value}
+            </div>
+          ))}
+        </div>
+      )}
       <h5 style={{ fontWeight: "bold" }}>Câu trả lời:</h5>
-      <div className="answer-list answer-list-2">
-        {answerList2.map((answer) => (
-          <div
-            key={answer._id}
-            className="answer-item"
-            onClick={() => swapElement(answer._id, "answer-list-2")}
-          >
-            {answer.value}
-          </div>
-        ))}
-      </div>
+
+      {answerList2.length > 0 && (
+        <div className="answer-list answer-list-2">
+          {answerList2.map((answer) => (
+            <div
+              key={answer._id}
+              className="answer-item"
+              onClick={() => swapElement(answer._id, "answer-list-2")}
+            >
+              {answer.value}
+            </div>
+          ))}
+        </div>
+      )}
     </div>
   );
 };

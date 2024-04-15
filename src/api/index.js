@@ -13,7 +13,7 @@ const api = {
     checkAnswer: apiElement("POST", `/answer/:questionId`),
     checkChallengeAnswers: apiElement("POST", "/challenge/check-answers"),
     getRankList: apiElement("GET", "/challenge/rank"),
-    getFeaturedCChallenges: apiElement("GET", "/challenge/most-played"),
+    getMostPlayedChallenge: apiElement("GET", "/challenge/most-played"),
 };
 
 export default api;
