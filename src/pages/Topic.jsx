@@ -8,7 +8,7 @@ const Topic = () => {
   const [topics, setTopics] = useState({ list: [], total: 0 });
   const [isLoading, setIsLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1); // Trang hiện tại
-  const pageSize = 4; // Kích thước trang
+  const pageSize = 8; // Kích thước trang
   const fetchTopics = async () => {
     try {
       const response = await api.topic.invoke({ 

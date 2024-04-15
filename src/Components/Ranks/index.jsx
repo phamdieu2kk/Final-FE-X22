@@ -1,26 +1,31 @@
 import React, { useState, useEffect } from "react";
-import { Table } from "antd";
+import { Table, Spin } from "antd";
 import api from "../../api";
 import "./style.css";
 
 const Ranks = () => {
   const [rankList, setRankList] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await api.getRankList.invoke({});
         setRankList(response.data.rankList);
-        setLoading(false);
+        setLoading(false); 
       } catch (error) {
         console.error("Lỗi khi tìm bảng xếp hạng:", error);
-        setLoading(false);
+        setIsLoading(false);
       }
     };
 
     fetchData();
   }, []);
+
+  useEffect(() => {
+    setIsLoading(loading); 
+  }, [loading]);
 
   const columns = [
     {
@@ -39,7 +44,7 @@ const Ranks = () => {
       title: "Điểm số",
       dataIndex: "totalPoint",
       key: "totalPoint",
-      className: "totalPoint-column", 
+      className: "totalPoint-column",
     },
   ];
 
@@ -49,20 +54,22 @@ const Ranks = () => {
         className="home-title"
         style={{
           textAlign: "center",
-          
         }}
       >
         Bảng xếp hạng
       </h1>
       <div className="table-wrapper">
-  <Table
-    dataSource={rankList}
-    columns={columns}
-    loading={loading}
-    pagination={false}
-    className="custom-table" 
-  />
-</div>
+        {isLoading ? (
+          <Spin size="large" />
+        ) : (
+          <Table
+            dataSource={rankList}
+            columns={columns}
+            pagination={false}
+            className="custom-table"
+          />
+        )}
+      </div>
     </div>
   );
 };

@@ -1,10 +1,9 @@
 import { Link, useNavigate } from "react-router-dom";
-import {Row, Col, Button, Checkbox, Form, Input, Typography, notification } from "antd";
+import { Row, Col, Button, Checkbox, Form, Input, Typography, notification } from "antd";
 import api from "../api";
 
 export default function Register() {
     const [registerForm] = Form.useForm();
-    const [notify, notifyContextHolder] = notification.useNotification();
     const navigate = useNavigate();
 
     const handleRegisterForm = async (values) => {
@@ -19,14 +18,14 @@ export default function Register() {
 
         try {
             await api.register.invoke({ data: dto });
-            notify.success({
+            notification.success({
                 message: 'Thành công',
                 description: 'Đăng ký tài khoản thành công'
             });
             navigate('/login');
         } catch (error) {
             console.dir(error);
-            notify.error({
+            notification.error({
                 message: 'Thất bại',
                 description: 'Đăng ký tài khoản thất bại'
             });
@@ -35,8 +34,7 @@ export default function Register() {
 
     return (
         <div className="auth-page">
-            {notifyContextHolder}
-           <Row justify="center" align="middle" style={{ minHeight: '100vh' }}>
+            <Row justify="center" align="middle" style={{ minHeight: '100vh' }}>
                 <Col xs={24} sm={20} md={16} lg={12} xl={8}>
                     <Form
                         form={registerForm}
@@ -108,6 +106,5 @@ export default function Register() {
                 </Col>
             </Row>
         </div>
-      
     );
 }
