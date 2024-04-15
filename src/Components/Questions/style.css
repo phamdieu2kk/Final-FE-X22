@@ -8,24 +8,26 @@
 }
 
 .question-card {
+  max-width: 800px;
+  border-radius: 10px;
   width: 100%; /* Định dạng chiều rộng của khung chứa nội dung */
-  padding: 60px;
-  background-color: #4CCD99;
-  
+  padding: 50px;
+  padding-top: 10px;
+  background-color: #b44444;
 }
 
 .question-header {
-  text-align: center; 
+  text-align: center;
   justify-content: center;
   margin: 20px auto;
   padding: 20px;
-  border: 1px solid #040404;
   align-items: center;
-  background-color: #FFC700;
-  
+  background-color: #fff;
+  border-radius: 10px;
 }
 .question {
-  font-weight: bold; 
+  font-size: 24px;
+  font-weight: bold;
 }
 
 .button-container {
@@ -35,10 +37,9 @@
 }
 
 .custom-progress {
-  width: 30%; 
+  width: 30%;
 }
 
 .restart-button {
   padding: 0px 20px;
-
 }
