@@ -118,7 +118,7 @@ const Challenges = () => {
                 description={
                   <>
                     <Flex justify="space-between" vertical>
-                      <Typography.Text>{`Mức độ: : ${convertToVietnamese(
+                      <Typography.Text>{`Mức độ : ${convertToVietnamese(
                         challenge.level,
                         "level"
                       )}`}</Typography.Text>

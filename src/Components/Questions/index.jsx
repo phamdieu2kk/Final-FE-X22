@@ -246,7 +246,13 @@ const Questions = () => {
               )}
               {showPlayAgain && (
                 <Link to="/topic" className="restart-button">
-                  <Button>Chơi lại</Button>
+                  <Button
+                    onClick={() => {
+                      window.location.reload();
+                    }}
+                  >
+                    Chơi lại
+                  </Button>
                 </Link>
               )}
             </div>
