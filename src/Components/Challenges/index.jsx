@@ -1,8 +1,19 @@
 /*eslint-disable*/
 import React, { useState, useEffect } from "react";
 import { Link, useSearchParams } from "react-router-dom";
-import { Flex, Typography, Breadcrumb, Card, Button, Modal, Pagination, Row, Col } from "antd";
+import {
+  Typography,
+  Breadcrumb,
+  Card,
+  Button,
+  Modal,
+  Pagination,
+  Row,
+  Col,
+  Flex,
+} from "antd";
 import api from "../../api";
+import ChallengeCard from "../ChallengeCard";
 
 const Challenges = () => {
   const [challenges, setChallenges] = useState([]);
@@ -19,7 +30,7 @@ const Challenges = () => {
           queries: {
             page: currentPage,
             pageSize,
-            topicId
+            topicId,
           },
         });
         setChallenges(response.data.challengeList);
@@ -44,14 +55,16 @@ const Challenges = () => {
 
   const convertToVietnamese = (value, type) => {
     const levelMap = {
-      "easy": "Dễ",
-      "medium": "Vừa",
-      "hard": "Khó",
+      easy: "Dễ",
+      medium: "Vừa",
+      hard: "Khó",
     };
     const pointMap = {
-      "point": "Điểm",
+      point: "Điểm",
     };
-    return type === 'level' ? levelMap[value] || value : pointMap[value] || value;
+    return type === "level"
+      ? levelMap[value] || value
+      : pointMap[value] || value;
   };
 
   return (
@@ -66,16 +79,36 @@ const Challenges = () => {
       </div>
       <Row gutter={[16, 16]}>
         {challenges.map((challenge) => (
-          <Col key={challenge._id} xs={24} sm={12} md={8} lg={6} xl={6}>
+          <Col
+            key={challenge._id}
+            style={{
+              minHeight: "300px",
+            }}
+            xs={24}
+            sm={12}
+            md={8}
+            lg={6}
+            xl={6}
+          >
+            {/* <ChallengeCard
+              challenge={challenge}
+              handleShowDetail={handleShowDetail}
+            /> */}
             <Card
-              style={{ width: "100%" }}
               hoverable
               cover={
                 <div style={{ height: "200px", overflow: "hidden" }}>
                   <img
                     alt="challenge"
-                    src={challenge.imageUrl || "https://png.pngtree.com/thumb_back/fw800/background/20230903/pngtree-a-puzzle-board-with-flags-set-up-image_13191520.jpg"}
-                    style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                    src={
+                      challenge.imageUrl ||
+                      "https://png.pngtree.com/thumb_back/fw800/background/20230903/pngtree-a-puzzle-board-with-flags-set-up-image_13191520.jpg"
+                    }
+                    style={{
+                      width: "100%",
+                      height: "100%",
+                      objectFit: "cover",
+                    }}
                   />
                 </div>
               }
@@ -83,19 +116,28 @@ const Challenges = () => {
               <Card.Meta
                 title={challenge.challengeName}
                 description={
-                    <>
-                        <Flex justify="space-between" vertical>
-                            <Typography.Text>{`Mức độ: : ${convertToVietnamese(challenge.level, 'level')}`}</Typography.Text>
-                            <Typography.Text>{`Điểm : ${convertToVietnamese(challenge.point, 'point')}`}</Typography.Text>
-                            
-                            <Button style={{ marginTop: "20px", width: "100%" }} onClick={() => handleShowDetail(challenge)}>
-                                Thử thách
-                            </Button>
-                        </Flex>
-                    </>
+                  <>
+                    <Flex justify="space-between" vertical>
+                      <Typography.Text>{`Mức độ: : ${convertToVietnamese(
+                        challenge.level,
+                        "level"
+                      )}`}</Typography.Text>
+                      <Typography.Text>{`Điểm : ${convertToVietnamese(
+                        challenge.point,
+                        "point"
+                      )}`}</Typography.Text>
+
+                      <Button
+                        style={{ marginTop: "20px", width: "100%" }}
+                        onClick={() => handleShowDetail(challenge)}
+                      >
+                        Thử thách
+                      </Button>
+                    </Flex>
+                  </>
                 }
-            />
-        </Card>
+              />
+            </Card>
           </Col>
         ))}
       </Row>
@@ -108,18 +150,38 @@ const Challenges = () => {
         />
       </div>
       <Modal
-        title={selectedChallenge?.challengeName}
+        title={
+          <Typography.Text
+            style={{
+              fontSize: "2rem",
+              color: "#b44445",
+            }}
+          >{`${
+            selectedChallenge?.challengeName || "Tên thử thách"
+          }`}</Typography.Text>
+        }
         visible={!!selectedChallenge}
         onCancel={handleCloseDetail}
         footer={null}
       >
-        <p>{convertToVietnamese(selectedChallenge?.level, 'level')}</p>
-        <p>{convertToVietnamese(selectedChallenge?.point, 'point')}</p>
-        <Button>
-          <Link to={`/questions?challengeId=${selectedChallenge?._id}`} style={{ color: "inherit", textDecoration: "none" }}>
-            Chơi Ngay
-          </Link>
-        </Button>
+        <Flex align="left" vertical>
+          <Typography.Text>{`Mức độ: ${selectedChallenge?.level}`}</Typography.Text>
+          <Typography.Text>{`Điểm: ${selectedChallenge?.point}`}</Typography.Text>
+          <Typography.Text>{`Mô tả: ${selectedChallenge?.description}`}</Typography.Text>
+          <Button
+            style={{
+              alignSelf: "center",
+              width: "20%",
+            }}
+          >
+            <Link
+              to={`/questions?challengeId=${selectedChallenge?._id}`}
+              style={{ color: "inherit", textDecoration: "none" }}
+            >
+              Chơi Ngay
+            </Link>
+          </Button>
+        </Flex>
       </Modal>
     </div>
   );

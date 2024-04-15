@@ -11,6 +11,7 @@ import FooterList from "./Components/FooterList";
 import api from "./api";
 import { getAccessToken } from "./api/core";
 import NotificationContext from "./context/NotificationContext";
+import AntdConfigProvider from "./context/AntdContext";
 function App() {
   const [currentUser, setCurrentUser] = useState();
   const [notify, notifyContextHolder] = useNotification();
@@ -32,8 +33,9 @@ function App() {
 
   return (
     <BrowserRouter>
-      <ConfigProvider>
-        <NotificationContext.Provider value={{notify, notifyContextHolder}}>
+      <AntdConfigProvider>
+        {/* <ConfigProvider> */}
+        <NotificationContext.Provider value={{ notify, notifyContextHolder }}>
           <AuthContext.Provider
             value={{
               currentUser,
@@ -45,7 +47,8 @@ function App() {
             <AppRouter />
           </AuthContext.Provider>
         </NotificationContext.Provider>
-      </ConfigProvider>
+        {/* </ConfigProvider> */}
+      </AntdConfigProvider>
       <FooterList />
     </BrowserRouter>
   );
