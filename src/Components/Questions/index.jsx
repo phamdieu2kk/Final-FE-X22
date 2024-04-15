@@ -134,7 +134,10 @@ const Questions = () => {
         setShowResult(true); // Hiển thị kết quả khi bấm nút "Nộp bài"
     };
 
-    const progressPercent = ((currentIndex + 1) / questions.length) * 100;
+    const progressPercent =
+    currentIndex === questions.length - 1 && questions.length % 2 !== 0
+        ? Math.floor(((currentIndex + 1) / questions.length) * 100)
+        : Math.floor(((currentIndex + 1) / questions.length) * 100);
 
     return (
         <div className="container">
@@ -239,7 +242,7 @@ const Questions = () => {
             <span style={{ fontSize: "16px" }}>
                 Tổng số câu hỏi: {questions.length}
                 <br />
-                Tổng số điểm: {score}
+                Tổng số điểm: {Math.floor(score)}
                 <br />
                 Bạn đã làm đúng: {correctAnswer}/{answerList.length} câu
             </span>
