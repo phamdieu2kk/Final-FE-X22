@@ -1,7 +1,7 @@
 /*eslint-disable*/
 import React, { useState, useEffect } from "react";
 import { Link, useSearchParams } from "react-router-dom";
-import { Typography, Breadcrumb, Card, Button, Modal, Pagination, Row, Col } from "antd";
+import { Flex, Typography, Breadcrumb, Card, Button, Modal, Pagination, Row, Col } from "antd";
 import api from "../../api";
 
 const Challenges = () => {
@@ -83,16 +83,19 @@ const Challenges = () => {
               <Card.Meta
                 title={challenge.challengeName}
                 description={
-                  <>
-                    <Typography.Text>{`Mức độ: ${convertToVietnamese(challenge.level, 'level')}`}</Typography.Text>
-                    <Typography.Text>{`Điểm: ${convertToVietnamese(challenge.point, 'point')}`}</Typography.Text>
-                    <Button style={{ marginTop: "20px", width: "100%" }} onClick={() => handleShowDetail(challenge)}>
-                      Thử thách
-                    </Button>
-                  </>
+                    <>
+                        <Flex justify="space-between" vertical>
+                            <Typography.Text>{`Mức độ: : ${convertToVietnamese(challenge.level, 'level')}`}</Typography.Text>
+                            <Typography.Text>{`Điểm : ${convertToVietnamese(challenge.point, 'point')}`}</Typography.Text>
+                            
+                            <Button style={{ marginTop: "20px", width: "100%" }} onClick={() => handleShowDetail(challenge)}>
+                                Thử thách
+                            </Button>
+                        </Flex>
+                    </>
                 }
-              />
-            </Card>
+            />
+        </Card>
           </Col>
         ))}
       </Row>
